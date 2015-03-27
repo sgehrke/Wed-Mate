@@ -31,38 +31,39 @@
 			<nav>
 				<ul>
 					<li><a href="#features">Features</a></li>
-					<li><a href="whyus">Why us</a></li>
-					<li><a href="contact">Contact</a></li>
+					<li><a href="#whyus">Why us</a></li>
+					<li><a href="#contact">Contact</a></li>
 				</ul>
 			</nav>
 		</div>
 	</header>
 <!-- This secion is for the featured image slider and exerpt along its bottom -->
-	<section>
-		<p><img src="featureimage" alt="featured image"></img></p>
-		<div>
-			<p><strong>What is Wed-Mate? </strong>Wed-Mate is an event assistant made for wedding professionals. It is designed to help ease the burden of replying to numerous inquiries regarding pricing and availability. Sign up to learn about our event tools.</p>
-			<a href="link to modal window">Sign up</a>
+	<section id="feature">
+		<p></p>
+		<div id="featOverlay">
+			<div class="container">
+				<p><strong>What is Wed-Mate? </strong>Wed-Mate is an event assistant made for wedding professionals. It is designed to help ease the burden of replying to numerous inquiries regarding pricing and availability. Sign up to learn about our event tools.</p>
+			<a href="link to modal window">Sign up</a></div>
 		</div>
 <!-- This will indicate the current page with dots made in css -->
-		<div>
+		<div id="pageination">
 			<span class="dot dot1"></span>
 			<span class="dot dot2"></span>
 			<span class="dot dot3"></span>
-			<span class="dot dot4"></span>
 		</div>
 	</section>
 <!-- This section will be the two main articles - One for features and one for Why us -->
-	<section>		
-		<article>
+	<section class="container">		
+		<article id="mainContent">
 			<header>
 				<h2>Features</h2>
 			</header>	
-				<img src="danceing image" alt="dancing image"></img>
+				<div><img src="images/dressDrapedSmall.jpg" alt="dressDrapedSmall" width="640" height="960"></div>
 				<h3>Instant Quote Generator</h3>
 				
 				<p>Our system makes gathering potential client information as easy as 1-2-3. All they need to do is check their date, supply their pertinent information, and check the generated price quote. You have complete control of the prices and will be alerted only when someone checks a date that you are available on.</p>
 <!-- These h3's may need to be put into a div container to seperate content -->
+				<img src="danceing image" alt="dancing image"></img>
 				<h3>Availability Checker</h3>
 				
 				<p>The event calendar will allow you to blackout unavailable dates with a click of a button. You will also be able to see event details simply by hovering over a blacked out date. </p>
@@ -79,18 +80,19 @@
 		
 	</section>
 
-	<section>
+	<section id="subfooter">
 		<h4>Get in Touch</h4>
 	</section>
 
 	<footer>
-		<p>Copyright Wed-Mate.com 2015 </p>
-		<p>
-			<a>Twitter</a>
-			<a>Facebook</a>
-			<a>Google</a>
-
-		</p>
+		<div class="container">
+			<p>&copy; Wed-Mate.com 2015 </p>
+			<p>
+				<a>Twitter</a>
+				<a>Facebook</a>
+				<a>Google</a>
+			</p>
+		</div>
 		
 	</footer>
 
