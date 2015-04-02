@@ -11,6 +11,7 @@
 
 <body>
 <!-- 	div for the banner above the nav bar  -->
+<main>
 	<div>
 		<nav>
 			<ul>
@@ -32,7 +33,7 @@
 				<ul>
 					<li><a href="#feature">Features</a></li>
 					<li><a href="#feature">Why us</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li><a href="contact.php">Contact</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -80,10 +81,12 @@
 		
 	</section>
 
-	<a href="#contact"><section id="subfooter" class="arrow_box">
+	<a href="contact.php">
+		<section id="subfooter" class="arrow_box">
 		<h4>Get in Touch</h4>
-	</section></a>
-
+		</section>
+	</a>
+</main>
 	<footer>
 		<div class="container">
 			<p>&copy; Wed-Mate.com 2015 </p>

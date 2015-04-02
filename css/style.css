@@ -5,6 +5,19 @@
 	==============================================================================
 	==============================================================================
 */
+html, body {
+	height: 100%;
+}
+
+main {
+	min-height: 100%;
+	margin-bottom: -50px;
+}
+
+main:after {
+	content: "";
+	display: block;
+}
 
 h2 {
 	font-size: 1.75em;
@@ -40,44 +53,44 @@ body {
 	font-family: arial;
 }
 
-body > div:first-child {
+main > div:first-child {
 	background: #353b40;
 	height: 25px;
 	width: 100%;
 }
 
-body > div:first-child ul {
+main > div:first-child ul {
 	list-style: none;
 	margin: 0 auto;
 	overflow: hidden;
 	float: right;
 }
 
-body > div:first-child ul li {
+main > div:first-child ul li {
 	color: white;
 	font-size: .875em;
 	line-height: 25px;
 	float: left;	
 }
 
-body div:first-child ul li:last-child {
+main div:first-child ul li:last-child {
 	margin-right: 30px;
 }
 
-body nav:first-child {
+main nav:first-child {
 	display: block;
 	width: 960px;
 	margin: 0 auto;
 }
 
-body > header {
+main > header {
 	position: relative;
 	height: 75px;
 	margin: 0;
 	background: #FFF6E6;
 }
 
-body > header h1 {
+main > header h1 {
 	float: left;
 	padding-left: 30px;
 }
@@ -174,6 +187,88 @@ header nav a:hover {
 }
 .dot1 {
     background-color: #6e6e6e;
+}
+
+/* **************************** Contact page ************************** */
+
+#featureContact {
+	position: relative;
+	height: 335px;
+	width: 100%;
+	background-color: #457283;
+}
+
+#featureContact h1 {
+	color: white;
+	font-size: 4em;
+	font-weight: 600;
+	font-style: italic;
+	text-align: center;
+	line-height: 335px;
+}
+
+#contactForm h2 {
+	margin-bottom: 5px;
+}
+
+#contactForm h4 {
+	margin-bottom: 15px;
+}
+
+#contactForm form{ 
+	padding: 30px;	
+}
+
+#contactForm form input {
+	width: 45.65%;
+	float: left;
+	padding: 10px;
+}
+
+#contactForm [name=name] {
+		margin-right: 30px;
+}
+
+#contactForm textarea {
+	float: left;
+	width: 100%;
+	margin: 30px 0;
+	border: none;
+	padding: 0;
+}
+
+#contactForm [name=submit] {
+	margin-bottom: 30px;
+	font-weight: 400;
+	text-align: center;
+	background: #ff6f47;
+	border: none;
+	color: white;
+	border-radius: 5px;
+}
+
+
+.arrow_boxMain {
+	position: relative;
+	background: #457283;
+}
+
+.arrow_boxMain:after, .arrow_boxMain:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_boxMain:after {
+	border-color: rgba(219, 213, 205, 0);
+	border-top-color: #457283;
+	border-width: 20px;
+	margin-left: -20px;
 }
 
 /* **************************** DASHBOARD GLOBAL ************************** */
@@ -446,6 +541,10 @@ footer {
 	height: 50px;
 	width: 100%;
 	background: #353b40;
+}
+main:after {
+	height: 50px;
+	background: #dbd5cd;
 }
 
 footer p {

@@ -6,7 +6,7 @@
 	<title>Event Assistant | Wed-Mate</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link href="css/glDatePicker.default.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/zabuto_calendar.min.css">
 
 
 </head>
@@ -174,8 +174,9 @@
 							<p><strong>Blackout unavailable dates and check the most popular dates.</strong> The availability checker features three tools. You are able to use the calendar to easily blackout dates with a quick view to the right. Along with a convenient way to see the most checked dates.</p>
 		
 							
-							
-								<img src="images/calendar.jpg" alt="calendar" width="215" height="215">
+							<!-- <div id="my-calendar">Here</div> -->
+
+							<img src="images/calendar.jpg" alt="calendar" width="215" height="215">
 						
 
 							
@@ -238,9 +239,16 @@
 	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
 	<script src="js/jquery-2.1.0.min.js"></script>
 	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<script src="js/zabuto_calendar.min.js"></script>
 	<!-- main -->
 	<script type="text/javascript" src="js/main.js"></script>	
 
+
+	<script type="application/javascript">
+	    $(document).ready(function () {
+	        $("#my-calendar").zabuto_calendar({language: "en"});
+	    });
+	</script>
 	
 </body>
 
