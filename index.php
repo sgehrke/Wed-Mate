@@ -15,7 +15,7 @@
 	<div>
 		<nav>
 			<ul>
-				<li><a href="#modal">Log in &nbsp;|</a></li>
+				<li><a href="calendar.php">Log in &nbsp;|</a></li> <!-- Temp link to UX -->
 				<li><a href="#modal">&nbsp; Register</a></li>
 			</ul>
 		</nav>

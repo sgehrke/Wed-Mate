@@ -57,7 +57,7 @@
 
 	<footer>
 		<div class="container">
-			<p>&copy; Wed-Mate.com 2015 </p>
+			<p>&copy; <a href="index.php">Wed-Mate.com 2015</a> </p>
 			<p>
 				<a>Twitter</a>
 				<a>Facebook</a>
