@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE HTML>
 <html>
 
@@ -103,3 +104,5 @@
 </body>
 
 </html>
+=======
+>>>>>>> parent of dfc1dd1... 90 percent complet with html and css - calendar is up and ready for back end development

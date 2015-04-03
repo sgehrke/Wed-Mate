@@ -5,8 +5,6 @@
 	==============================================================================
 	==============================================================================
 */
-
-/* ensure the footer stays on bottom */
 html, body {
 	height: 100%;
 }
@@ -395,6 +393,7 @@ table tr:nth-child(even) {
 
 /* **************************** DASHBOARD Availablity Tab ************************** */
 #checker img{
+	display: inline;
 	width: 215px;
 	float: left;
 	margin-right: 30px;
@@ -414,220 +413,7 @@ table tr:nth-child(even) {
 }
 
 
-/* **************************** UX Pages ************************** */
 
-#featureUX {
-	position: relative;
-	width: 100%;
-	height: 335px;
-	background: #fff6e7;
-}
-
-#userLogo {
-	position: relative;
-	height: 245px;
-	width: 100%;
-	background: url(../images/DJ_Cobra_Logo.png)no-repeat;
-	background-size: contain;	
-	background-position: center center;
-}
-
-#featOverlayUX {
-	text-align: center;
-	height: 90px;
-	background: rgba(0, 0, 0, .75);
-}
-
-
-/*  Progress Tracker  */
-
-#featureUX ol {
-	width: 960px;
-	margin: 0 auto;
-	padding-left: 180px;
-	text-align: center;
-	line-height: 70px;
-}
-
-ol.progtrckr li {
-    display: inline-block;
-    text-align: center;
-    line-height: 48px;
-    width: 200px;
-}
-
-ol.progtrckr li span{
-    text-align: center;
-    margin-left: -180px;
-}
-
-ol.progtrckr li.progtrckr-done {
-	color: white;
-    border-bottom: 4px solid yellowgreen;
-}
-ol.progtrckr li.progtrckr-todo {
-    color: silver; 
-    border-bottom: none;
-}
-
-ol.progtrckr li.progtrckr-todo:nth-child(2) {
-    color: silver; 
-    border-bottom: 4px solid silver;
-}
-
-ol.progtrckr li:after {
-    content: "\00a0\00a0";
-}
-ol.progtrckr li:before {
-    position: relative;
-    bottom: -40px;
-    float: left;
-    line-height: 1em;
-}
-ol.progtrckr li.progtrckr-done:before {
-    content: "\2713";
-    color: white;
-    background-color: yellowgreen;
-    height: 19.2px;
-    width: 19.2px;
-    line-height: 19.2px;
-    border: none;
-    border-radius: 19.2px;
-}
-ol.progtrckr li.progtrckr-todo:before {
-    content: "\2713";
-    color: white;
-    background-color: grey;
-    height: 19.2px;
-    width: 19.2px;
-    line-height: 19.2px;
-    border: none;
-    border-radius: 19.2px;
-}
-
-/* Calendar Section */
-
-#calendar {
-	width: 960px;
-	margin: 30px auto;
-	border: 7px solid #457283;
-	min-height: 550px;
-	background: white;
-}
-
-#calendar aside {
-	float: left;
-	min-height: 550px;
-	width: 384px;
-	border-right: 4px solid #457283;	
-}
-
-#calendar aside > div {
-	border: 4px solid #7f8c8d;
-	width: 200px;
-	height: 100px;
-	margin: 50px auto;	
-	line-height: 100px;
-	text-align: center;
-	font-size: 2em;
-	font-style: italic;
-}
-
-#calendar aside > p {
-	text-align: center;
-	font-size: 10em;
-	color: #7f8c8d;
-	text-shadow: 5px 5px 5px #457283;
-}
-
-#calendar section {
-	position: relative;
-	float: left; 
-	width: 572px;
-	min-height: 550px;
-}
-
-.table {
-	border: none;
-}
-
-
-.calendar-month-header { 
-	color: black;
-	font-size: 2.5em;
-}
-
-.calendar-dow-header {
-	background: white;
-}
-
-#calendar th {
-	color: black;
-}
-
-#calendar span {
-	color: black;
-}
-
-.calendar-month-navigation  {
-	color: black;
-}
-
-
-
-#calendar section a {
-	position: absolute;
-	bottom: 45px;
-	left: 50%;
-	margin-left: -155px;
-	padding: 10px;
-	width: 310px;
-	line-height: 30px;
-	font-weight: 400;
-	text-align: center;
-	background: #ff6f47;
-	border: none;
-	color: white;
-	border-radius: 5px;
-}
-
-/* Booked Page */
-
-#booked {
-	width: 960px;
-	height: 330px;
-	position: relative;
-	margin-top: 30px;
-	 background: -webkit-linear-gradient(#ffffff 0%, #e1e1e1 100%); 
-}
-
-#booked h3{
-	padding: 30px;
-	font-size: 2em;
-	text-align: center;
-	font-style: italic;
-}
-
-#booked h4 {
-	padding: 0 50px;
-	line-height: 25px;
-}
-
-#booked a {
-	position: absolute;
-	bottom: 30px;
-	left: 50%;
-	margin-left: -155px;
-	padding: 10px;
-	width: 310px;
-	font-weight: 400;
-	line-height: 30px;
-	text-align: center;
-	background: #ff6f47;
-	border: none;
-	color: white;
-	border-radius: 5px;
-}
 /*===========================================================================================================================================================
 	
 										MAIN CONTENT
@@ -662,21 +448,11 @@ article header {
 	 float: left;
  }
  
-/* This is a temp Link for development */
- 
-article a {
-	clear: both;
-	float: left;
-}
- 
-/*
 article img:nth-child(5) {
 	 padding: 30px 0 30px 30px;
 	 clear: both;
 	 float: left;
-	 	 border: 1px solid red;
  }
-*/
  
  article h3 {
 	 padding: 30px 0 0 30px;

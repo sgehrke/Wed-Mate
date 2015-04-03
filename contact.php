@@ -53,6 +53,9 @@
 			</textarea>
 			<input type="submit" value="Submit" name="submit"></input>
 		</form>	
+			
+
+		
 	</section>
 </main>
 
@@ -69,6 +72,16 @@
 		
 	</footer>
 
+	
+	<!-- jquery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- 	<script src="js/jquery-2.1.0.min.js"></script> -->
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<!-- plugins -->
+
+	
+	<!-- main -->
+	<script type="text/javascript" src="js/main.js"></script>
 </body>
 
 </html>
