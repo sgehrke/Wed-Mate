@@ -15,7 +15,7 @@ div.zabuto_calendar .table {
 
 div.zabuto_calendar .table th,
 div.zabuto_calendar .table td {
-    padding: 4px 2px;
+    padding: 10px 0;
     text-align: center;
 }
 
@@ -32,15 +32,18 @@ div.zabuto_calendar .table tr.calendar-month-header th span {
     cursor: pointer;
     display: inline-block;
     padding-bottom: 10px;
+    font-style: italic;
 }
 
 div.zabuto_calendar .table tr.calendar-dow-header th {
     background-color: #f0f0f0;
 }
 
+/*
 div.zabuto_calendar .table tr:last-child {
     border-bottom: 1px solid #dddddd;
 }
+*/
 
 div.zabuto_calendar .table tr.calendar-month-header th {
     padding-top: 12px;
@@ -53,7 +56,7 @@ div.zabuto_calendar .table-bordered tr.calendar-month-header th {
 }
 
 div.zabuto_calendar .table-bordered tr.calendar-month-header th:first-child {
-    border-left: 1px solid #dddddd;
+    border-left: 1px solid #dedede;
 }
 
 div.zabuto_calendar div.calendar-month-navigation {
@@ -61,6 +64,7 @@ div.zabuto_calendar div.calendar-month-navigation {
     margin: 0;
     padding: 0;
     padding-top: 5px;
+    color: black;
 }
 
 div.zabuto_calendar tr.calendar-dow-header th,
@@ -70,8 +74,7 @@ div.zabuto_calendar tr.calendar-dow td {
 
 div.zabuto_calendar .table tr td div.day {
     margin: 0;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding-top: 10px; 
 }
 
 /* actions and events */

@@ -13,6 +13,7 @@
 
 <body>
 <!-- 	div for the banner above the nav bar  -->
+<main>
 	<div>
 		<nav>
 			<ul>
@@ -25,7 +26,7 @@
 <!-- Nav bar with logo floated left and nav floated right -->
 		<div class="container">
 			<h1>
-				<a href="#">
+				<a href="index.php">
 					<img src="images/webMateLogo/WedMate_Logo_186x100.png" alt="WedMate_Logo_186x100" alt="Wed-Mate Event Assitant Logo" height="75">
 				</a>
 			</h1>
@@ -223,6 +224,7 @@
 	<a href="#contact"><section id="subfooter" class="arrow_box">
 		<h4>Get Support</h4>
 	</section></a>
+</main>
 
 	<footer>
 		<div class="container">
