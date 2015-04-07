@@ -9,7 +9,7 @@
 		<h2>Sign in</h2>
 			<input type="email" name="Email" value="" placeholder="Email"></br>
 			<input type="password" name="Password" value="" placeholder="Password"></br>
-			<input type="submit" name="submit" value="Submit"></br>
+			<input type="submit" name="Submit" value="Submit"></br>
 	</form>
 </aside>
 <script language="JavaScript" type="text/javascript">
@@ -17,13 +17,15 @@
 	function FrontPage_Form1_Validator(theForm)
 	{
 	
-	  if (theForm.ID.value == "")
+	  if (theForm.this.value == "")
 	  {
+		console.log("here");
 	    alert("Please enter a value for the \"Group\" field.");
-	    theForm.ID.focus();
-	    return (false);
+	    theForm.this.focus();
+	    return false;
 	  }
 	
+/*
 	  if (theForm.ID.value.length < 2)
 	  {
 	    alert("Please enter at least 2 characters in the \"Group\" field.");
@@ -38,6 +40,7 @@
 	    return (false);
 	  }
 	  return (true);
+*/
 	}
 
 
