@@ -263,7 +263,6 @@ header nav a:hover {
 	height: 0;
 	width: 0;
 	position: absolute;
-	pointer-events: none;
 }
 
 .arrow_boxMain:after {
@@ -273,7 +272,7 @@ header nav a:hover {
 	margin-left: -20px;
 }
 
-/* **************************** DASHBOARD GLOBAL ************************** */
+/* ************************** DASHBOARD GLOBAL *********************** */
 
 
 #featureDash {
@@ -304,7 +303,8 @@ header nav a:hover {
 	background: rgba(0, 0, 0, .75);
 }
 
-/* **************************** DASHBOARD GLOBAL TABS ************************** */
+/* ************************ DASHBOARD GLOBAL TABS ********************* */
+
 #tabs {
 	width: 550px;
 	margin: 30px auto 0 auto;
@@ -393,7 +393,7 @@ table tr:nth-child(even) {
    background-color:#fff;
 }
 
-/* **************************** DASHBOARD Availablity Tab ************************** */
+/* *************** DASHBOARD Availablity Tab ************************** */
 #checker img{
 	width: 215px;
 	float: left;
@@ -413,6 +413,96 @@ table tr:nth-child(even) {
 	float: left;
 }
 
+
+/* **************************** Quote page ************************** */
+
+#quote {
+	width: 960px;
+	min-height: 400px;
+	margin: 30px auto 30px auto;
+	background: -webkit-linear-gradient(#ffffff 0%, #e1e1e1 100%);
+}
+
+#quote > section {
+	position: relative;
+	width: 800px;
+	margin: 0 auto;
+	padding-bottom: 30px;
+}
+
+#quote h2 {
+	text-align: center;
+	padding: 15px 0 0 0;
+	font-weight: 800;
+}
+
+#quote p {
+	padding: 15px 5px 15px 5px;
+}
+
+#quote table {
+	width: 100%;
+	border: 1px solid #d9d9d9;
+}
+
+#quote th {
+	background: #363c41;
+	width: 160px;
+	color: white;
+	padding: ;
+	height: 50px;
+}
+
+.arrow-right {
+	position: absolute;
+	left: 161px;
+	top:188.5px;
+	width: 0; 
+	height: 0; 
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	
+	border-left: 25px solid #363c41;
+}
+
+#quote td {
+	text-align: center;
+	color: white;
+	line-height: 30px;
+}
+
+#quote tr:last-child td {
+	background: #19b5ea;
+	font-size: 1.25em;
+}	
+
+#quote table tr {
+    background-color: #b6b8b8;
+    border-bottom: 1px solid white;
+}
+
+#quote div {
+	text-align: center;
+		margin-top: 30px ;
+}
+
+#quote div a {
+	margin-left: 30px ;
+	display: inline-block;
+	width: 200px;
+	height: 50px;
+	font-weight: 400;
+	line-height: 50px;
+	text-align: center;
+	background: #f3714c;
+	border: none;
+	color: white;
+	border-radius: 5px;
+}
+
+#quote div a:last-child {
+	background: #b6b7b7;
+}
 
 /* **************************** UX Pages ************************** */
 
@@ -465,6 +555,11 @@ ol.progtrckr li.progtrckr-done {
 	color: white;
     border-bottom: 4px solid yellowgreen;
 }
+
+ol.progtrckr li.progtrckr-done:last-child {
+    border-bottom: none;
+}
+
 ol.progtrckr li.progtrckr-todo {
     color: silver; 
     border-bottom: none;
@@ -710,7 +805,6 @@ article img:nth-child(5) {
 	height: 0;
 	width: 0;
 	position: absolute;
-	pointer-events: none;
 }
 
 .arrow_box:after {
@@ -776,6 +870,26 @@ footer p {
 	line-height: 50px;
 }
 
+#social {
+	height: 50px;
+}
+
+#social a {
+	margin-left: 10px;	
+}
+
+footer p:last-child a:hover:nth-child(1) {
+	color: #00aced;
+}
+
+footer p a:hover:nth-child(2) {
+	color: #3b5998;
+}
+
+footer p a:hover:nth-child(3) {
+	color: #dd4b39;
+}
+
 footer p:nth-child(1) {
 	margin-left: 30px;
 	float: left;	
@@ -786,7 +900,61 @@ footer p:nth-child(2) {
 	float: right;	
 }
 
+/* **************************** Modal Overlay ************************** */
 
+.overlay {
+	background: #333;
+	opacity: .8;
+	z-index: 10000;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+.modal {
+	background: white;
+	width: 500px;
+	max-width: 500px;
+	z-index: 10001;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -250px;
+	border-radius: 5px;
+}
 
+#login-modal {
+	padding: 30px 45px;
+}
+
+.formLayout h2 {
+	text-align: center;
+	font-weight: 800;
+	padding-bottom: 15px;
+}
+
+.formLayout input {
+	padding-left: 10px;
+	width: 388px;
+	margin: 10px 0;
+	height: 48px;
+	border: 1px solid black;
+	border-radius: 5px;
+	
+}
+
+.formLayout [name=submit] {
+	color: white;
+	margin-top: 10px;
+	height: 50px;
+	width: 400px;
+	font-weight: 400;
+	text-align: center;
+	background: #ff6f47;
+	border: none;
+	border-radius: 5px;
+}
 
 

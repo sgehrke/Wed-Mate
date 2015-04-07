@@ -6,7 +6,8 @@
 	<title>Event Assistant | Wed-Mate</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
-
+	<script src="js/jquery-2.1.0.min.js"></script>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -15,8 +16,8 @@
 	<div>
 		<nav>
 			<ul>
-				<li><a href="dashboard.html">Log in &nbsp;|</a></li> <!-- Temp link to UX -->
-				<li><a href="#modal">&nbsp; Register</a></li>
+				<li><a href="dashboard.html" class="navItem" id="login">Log in &nbsp;|</a></li> <!-- Temp link to UX -->
+				<li><a href="#modal" class="navItem" id="register">&nbsp; Register</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -26,7 +27,7 @@
 		<div class="container">
 			<h1>
 				<a href="#">
-					<img src="images/webMateLogo/WedMate_Logo_186x100.png" alt="WedMate_Logo_186x100" alt="Wed-Mate Event Assitant Logo" height="75">
+					<img src="images/webMateLogo/WedMate_Logo_186x100.png" alt="Wed-Mate Event Assitant Logo" height="75">
 				</a>
 			</h1>
 			<nav>
@@ -44,7 +45,8 @@
 		<div id="featOverlay">
 			<div class="container">
 				<p><strong>What is Wed-Mate? </strong>Wed-Mate is an event assistant made for wedding professionals. It is designed to help ease the burden of replying to numerous inquiries regarding pricing and availability. Sign up to learn about our event tools.</p>
-			<a href="link to modal window">Sign up</a></div>
+			<a href="link to modal window">Sign up</a>
+			</div>
 		</div>
 <!-- This will indicate the current page with dots made in css -->
 		<div id="pageination">
@@ -90,10 +92,10 @@
 	<footer>
 		<div class="container">
 			<p>&copy; Wed-Mate.com 2015 </p>
-			<p>
-				<a>Twitter</a>
-				<a>Facebook</a>
-				<a>Google</a>
+			<p id="social">
+				<a href="twitter.com"><i class="fa fa-twitter"></i></a>
+				<a href="facebook.com"><i class="fa fa-facebook"></i></a>
+				<a href="google.com"><i class="fa fa-google-plus"></i></a>
 			</p>
 		</div>
 		
