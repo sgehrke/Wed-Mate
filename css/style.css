@@ -504,6 +504,10 @@ table tr:nth-child(even) {
 	background: #b6b7b7;
 }
 
+#quote p a {
+	text-decoration: underline;
+	color: #19b5ea;
+}
 /* **************************** UX Pages ************************** */
 
 #featureUX {
@@ -915,17 +919,28 @@ footer p:nth-child(2) {
 .modal {
 	background: white;
 	width: 500px;
-	max-width: 500px;
 	z-index: 10001;
 	position: fixed;
 	top: 50%;
 	left: 50%;
+	transform: translate(-50%, -50%);
+/*
 	margin-top: -100px;
 	margin-left: -250px;
+*/
 	border-radius: 5px;
 }
 
-#login-modal {
+.close {
+	color: #707172;
+	font-size: 2em;
+	position: absolute;
+    top:2px;
+    right:10px;
+    z-index:100;
+}
+
+#login-modal, #register-modal {
 	padding: 30px 45px;
 }
 
@@ -945,7 +960,7 @@ footer p:nth-child(2) {
 	
 }
 
-.formLayout [name=submit] {
+.formLayout [name=Submit] {
 	color: white;
 	margin-top: 10px;
 	height: 50px;
@@ -957,4 +972,19 @@ footer p:nth-child(2) {
 	border-radius: 5px;
 }
 
+.error::-webkit-input-placeholder {
+   color: #ff6f47;
+}
+
+.error:-moz-placeholder { /* Firefox 18- */
+   color: #ff6f47;  
+}
+
+.error::-moz-placeholder {  /* Firefox 19+ */
+   color: #ff6f47;  
+}
+
+.error:-ms-input-placeholder {  
+   color: #ff6f47;  
+}
 

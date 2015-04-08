@@ -66,49 +66,47 @@ $(document).ready(function () {
 var olay = $('<div class="overlay" />').appendTo(document.body).hide();
 var modal = $('<div class="modal" />').appendTo(document.body).hide();
  	
- 	var openmodal = function(){
- 		olay.add(modal).show().css({opacity:0});
- 		olay.animate({opacity:.8}, 100);
- 		modal
- 			/*
-.css({
-	 			top: $(window).height()/2 - modal.outerHeight()/2 + $(window).scrollTop(),
-	 			left: $(window).width()/2 - modal.outerWidth()/2 + $(window).scrollLeft()
- 			})
-*/
- 			.animate({opacity:1});
- 	};
- 	var movemodal = function(){
-	 	modal
-	 		.stop(true)
- 			.animate({
-	 			top: $(window).height()/2 - modal.outerHeight()/2 + $(window).scrollTop(),
-	 			left: $(window).width()/2 - modal.outerWidth()/2 + $(window).scrollLeft()
- 			}, 300);
- 	};
- 	
- 	var closemodal = function(){
-	 	olay.add(modal).animate({opacity:0}, function(){	
-			$(this).hide(); 	
-	 	})
- 	};
-
-  $(".navItem").on('click' , function(){
-  	
-  	openmodal();
-  	$(".modal").load("data/"+$(this).attr("id")+".html", function(){
+		var openmodal = function(){
+			modal.animate({opacity:1});
+				olay.add(modal).show().css({opacity:0});
+				olay.animate({opacity:.8}, 100);
+		};
+		
+		var closemodal = function(){
+		 	olay.add(modal).animate({opacity:0}, function(){	
+				$(this).hide(); 	
+		 	})
+		};
+	
+	$(".navItem").on('click' , function(){
+		
+		openmodal();
+		$(".modal").load("data/"+$(this).attr("id")+".html", function(){
 	
 		});
 	return false;  
-  });
-  
-  olay.on('click', closemodal);
-  
-  $(window).on('keyup', function(e){
+	});
+	
+	olay.on('click', closemodal);
+	
+/*  NOT NEEDED DUE TO Transform: tranlate(-50%, -50%)
+	var movemodal = function(){
+ 	modal
+ 		.stop(true)
+			.animate({
+ 			top: $(window).height()/2 - modal.outerHeight()/2 + $(window).scrollTop(),
+ 			left: $(window).width()/2 - modal.outerWidth()/2 + $(window).scrollLeft()
+			}, 300);
+	};
+	
+	$( window ).resize(movemodal);	
+*/
+	
+	$(window).on('keyup', function(e){
 	  if (e.which === 27 ){
 		  closemodal();
 	  }
-  }); 
+	}); 
  
     
 /*
