@@ -1,9 +1,13 @@
 	
-<section id="login-modal">	
+<section id="register-modal">	
 	<form class="formLayout" method="POST" action="dashboard.php" onsubmit="return FrontPage_Form1_Validator(this)" name="FrontPage_Form1" language="JavaScript">	
 		<a class="close">×</a>
-		<h2>Sign in</h2>
+		<h2>Add New Option</h2>
+			<input type="text" name="CompanyName" value="" placeholder="Company Name"></br>
+			<input type="url" name="LogoURL" value="" placeholder="Logo URL"></br>
+			<input type="url" name="Website" value="" placeholder="Website - http://"></br>
 			<input id="email" type="email" name="Email" value="" placeholder="Email"></br>
+			<input type="text" name="UserName" value="" placeholder="Username">
 			<input type="password" name="Password" value="" placeholder="Password"></br>
 			<input type="submit" name="Submit" value="Submit"></br>
 	</form>
@@ -18,18 +22,8 @@
 	    theForm.Email.setAttribute("class", "error");
 	    document.getElementById('email').style.borderColor = "#ff6f47";
 	    document.getElementsByName('Email')[0].placeholder='Email is Required';
-	    document.getElementById('email').style.outlineColor = "#ff6f47";
-	    theForm.Email.focus();
 	    return (false);
 	  }
-/*
-	  if else (theForm.Email.value.length => 1) {
-		theForm.Email.focus();
-		document.getElementById('email').style.outlineColor = "default";
-	    document.getElementById('email').style.borderColor = "black";	
-	    return (false);	  
-	  }
-*/
 	  return (true);
 	}
 

@@ -75,7 +75,7 @@ main > div:first-child ul li {
 	float: left;	
 }
 
-main div:first-child ul li:last-child {
+main > div:first-child ul li:last-child, main header > div:first-child ul li:last-child {
 	margin-right: 30px;
 }
 
@@ -423,7 +423,7 @@ table tr:nth-child(even) {
 	background: -webkit-linear-gradient(#ffffff 0%, #e1e1e1 100%);
 }
 
-#quote > section {
+#quote section {
 	position: relative;
 	width: 800px;
 	margin: 0 auto;
@@ -712,7 +712,7 @@ ol.progtrckr li.progtrckr-todo:before {
 	line-height: 25px;
 }
 
-#booked a {
+#booked > a {
 	position: absolute;
 	bottom: 30px;
 	left: 50%;
@@ -726,6 +726,11 @@ ol.progtrckr li.progtrckr-todo:before {
 	border: none;
 	color: white;
 	border-radius: 5px;
+}
+
+#booked h4 a {
+  text-decoration: underline;
+  color: #19b5ea;
 }
 /*===========================================================================================================================================================
 	

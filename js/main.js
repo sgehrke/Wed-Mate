@@ -78,7 +78,7 @@ var modal = $('<div class="modal" />').appendTo(document.body).hide();
 		 	})
 		};
 	
-	$(".navItem").on('click' , function(){
+	$(".modal-window").on('click' , function(){
 		
 		openmodal();
 		$(".modal").load("data/"+$(this).attr("id")+".html", function(){
