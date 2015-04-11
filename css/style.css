@@ -696,7 +696,7 @@ ol.progtrckr li.progtrckr-todo:before {
 	width: 960px;
 	height: 330px;
 	position: relative;
-	margin-top: 30px;
+	margin: 30px auto;
 	 background: -webkit-linear-gradient(#ffffff 0%, #e1e1e1 100%); 
 }
 
@@ -929,10 +929,6 @@ footer p:nth-child(2) {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-/*
-	margin-top: -100px;
-	margin-left: -250px;
-*/
 	border-radius: 5px;
 }
 
@@ -991,5 +987,48 @@ footer p:nth-child(2) {
 
 .error:-ms-input-placeholder {  
    color: #ff6f47;  
+}
+
+
+/******************** Tooltip ******************/
+
+.tipbox {
+	display: block;
+	position: absolute;
+	z-index: 10000;
+	padding: 30px;
+	background: white;
+	border-radius: 10px;
+	border: 4px solid #457284;
+	top:35px;
+	left:350px;
+	line-height: 20px;
+}
+
+
+.tipbox:after, .tipbox:before {
+	content: ' ';
+	height: 0;
+	position: absolute;
+	width: 0;
+	border: 10px solid transparent;
+	right: 100%;
+	top: 50%;
+	margin-left: -25px;
+	pointer-events: none;
+}
+
+.tipbox:after {
+	border-width: 13px;
+	border-right-color: #ffffff;
+	border-width: 15px;
+	margin-top: -15px;
+}
+
+.tipbox:before {
+	border-width: 12px;
+	border-right-color: #457284;
+	border-width: 21px;
+	margin-top: -21px;
 }
 

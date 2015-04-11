@@ -3,9 +3,9 @@
 	<form class="formLayout" method="POST" action="dashboard.php" onsubmit="return FrontPage_Form1_Validator(this)" name="FrontPage_Form1" language="JavaScript">	
 		<a class="close">×</a>
 		<h2>Register</h2>
+			<input type="url" name="LogoURL" value="" placeholder="Logo URL" class="tooltip arrow_boxTool"><span class="tipbox">This is the URL to your logo file, for example: http://www.yourdjcompany.com/images/logo.gif</br><em>This file must be located on a web server, not on your hard drive.</em></span>
 			<input type="text" name="CompanyName" value="" placeholder="Company Name"></br>
-			<input type="url" name="LogoURL" value="" placeholder="Logo URL"></br>
-			<input type="url" name="Website" value="" placeholder="Website - http://"></br>
+			<input type="url" name="Website" value="" placeholder="Website - http://">
 			<input id="email" type="email" name="Email" value="" placeholder="Email"></br>
 			<input type="text" name="UserName" value="" placeholder="Username">
 			<input type="password" name="Password" value="" placeholder="Password"></br>
@@ -33,7 +33,23 @@
 
 <script>
 	$(document).ready(function () {
+		
+		$('.tooltip').each(function(){
+			var that = $(this), 
+				tip = that.next('.tipbox')
+			;
 
+			that.on('focus', function(){
+				tip.hide();
+			})
+			.bind('mouseenter', function(){
+				tip.show();
+			})
+			.bind('mouseleave', function(){
+				tip.hide();
+			})
+		});
+			;
 		$('.close').on('click', function() {
 		  $('.overlay, .modal').hide();
 		  return false;
