@@ -22,10 +22,13 @@ div.zabuto_calendar .table td {
 div.zabuto_calendar .table tr th,
 div.zabuto_calendar .table tr td {
     background-color: #ffffff;
+    color: black;
 }
 
 div.zabuto_calendar .table tr.calendar-month-header th {
     background-color: #fafafa;
+    color: black;
+
 }
 
 div.zabuto_calendar .table tr.calendar-month-header th span {
@@ -37,6 +40,7 @@ div.zabuto_calendar .table tr.calendar-month-header th span {
 
 div.zabuto_calendar .table tr.calendar-dow-header th {
     background-color: #f0f0f0;
+    cursor: auto;
 }
 
 /*
@@ -70,6 +74,7 @@ div.zabuto_calendar div.calendar-month-navigation {
 div.zabuto_calendar tr.calendar-dow-header th,
 div.zabuto_calendar tr.calendar-dow td {
     width: 14%;
+    cursor: pointer;
 }
 
 div.zabuto_calendar .table tr td div.day {

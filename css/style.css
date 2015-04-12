@@ -394,11 +394,10 @@ table tr:nth-child(even) {
 }
 
 /* *************** DASHBOARD Availablity Tab ************************** */
-#checker img{
-	width: 215px;
+#checker #cal-container {
+	max-width: 215px;
 	float: left;
 	margin-right: 30px;
-	overflow: hidden;
 
 }
 
@@ -651,28 +650,10 @@ ol.progtrckr li.progtrckr-todo:before {
 }
 
 
-.calendar-month-header { 
+#calendar .calendar-month-header { 
 	color: black;
 	font-size: 2.5em;
 }
-
-.calendar-dow-header {
-	background: white;
-}
-
-#calendar th {
-	color: black;
-}
-
-#calendar span {
-	color: black;
-}
-
-.calendar-month-navigation  {
-	color: black;
-}
-
-
 
 #calendar section a {
 	position: absolute;

@@ -55,7 +55,7 @@ $(document).ready(function () {
 
         $(".active").removeClass("active");
         $(this).addClass("active");
-        $("#tab-content div").hide().eq(id).show();
+        $("#tab-content > div").hide().eq(id).show();
         return false;
     });
 
@@ -79,13 +79,22 @@ var modal = $('<div class="modal" />').appendTo(document.body).hide();
 		};
 	
 	$(".modal-window").on('click' , function(){
-		
+		console.log(this);
 		openmodal();
 		$(".modal").load("data/"+$(this).attr("id")+".html", function(){
 	
 		});
 	return false;  
 	});
+	
+	$("div.day").on('click' , function(){
+														console.log(this);
+														openmodal();
+														$(".modal").load("data/"+$(this).attr("id")+".html", function(){
+														
+														});
+														return false;  
+													});	
 	
 	olay.on('click', closemodal);
 	
