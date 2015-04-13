@@ -1013,3 +1013,9 @@ footer p:nth-child(2) {
 	margin-top: -21px;
 }
 
+
+.selected-date {
+	background: black;
+	color: white;
+}
+

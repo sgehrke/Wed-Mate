@@ -8,41 +8,6 @@
 
 $(document).ready(function () {
 
-    /*
-	===============================================
-	=========================== MY ADDED jQUERY
-	*/
-
-    //hides the main feature container and reveals after 1 second
-
-
-    // moving the dashboard up 
-    $(".main-dash li").css("top", "20%");
-
-
-    //Dashboard page nav bar feature...makes an expanded column on hover
-    $(".hide").mouseenter(function () {
-        $(this).addClass("expand").stop().animate({
-            height: '300px'
-        }, {
-            queue: false,
-            duration: 600,
-            easing: 'easeOutBounce'
-        })
-    });
-
-
-    $(".hide").mouseleave(function () {
-        $(this).removeClass("expand").stop().animate({
-            height: '65px'
-        }, {
-            queue: false,
-            duration: 600,
-            easing: 'easeOutBounce'
-        })
-
-    });
-
 
     /********************* Tabbed Menu index.html **********************************/
 
@@ -86,16 +51,7 @@ var modal = $('<div class="modal" />').appendTo(document.body).hide();
 		});
 	return false;  
 	});
-	
-	$("div.day").on('click' , function(){
-														console.log(this);
-														openmodal();
-														$(".modal").load("data/"+$(this).attr("id")+".html", function(){
-														
-														});
-														return false;  
-													});	
-	
+		
 	olay.on('click', closemodal);
 	
 /*  NOT NEEDED DUE TO Transform: tranlate(-50%, -50%)
@@ -117,7 +73,26 @@ var modal = $('<div class="modal" />').appendTo(document.body).hide();
 	  }
 	}); 
  
-    
+//    CALENDAR
+
+
+
+	$("#my-calendar").zabuto_calendar({
+        today: true,
+		show_previous: false,
+		weekstartson: 0,
+		nav_icon: {
+		prev: '<i class="fa fa-chevron-circle-left"></i>',
+		next: '<i class="fa fa-chevron-circle-right"></i>'
+		}
+    });
+  
+
+   
+   
+   
+
+   
 /*
     $("#sign_in").on("click", function (e) {
         e.preventDefault();

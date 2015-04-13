@@ -83,6 +83,7 @@
 ];
 */
 		$(document).ready(function () {
+/*
 			$("#my-calendar").zabuto_calendar({
 				// 	data: eventData,
 				today: true,
@@ -92,17 +93,53 @@
 				next: '<i class="fa fa-chevron-circle-right"></i>'
 				}
 			});
-			
+*/		var fullDate = new Date();
+			day = fullDate.getDate();
+			switch (fullDate.getDay()) {
+			    case 0:
+			        weekday = "Sunday";
+			        break;
+			    case 1:
+			        weekday = "Monday";
+			        break;
+			    case 2:
+			        weekday = "Tuesday";
+			        break;
+			    case 3:
+			        weekday = "Wednesday";
+			        break;
+			    case 4:
+			        weekday = "Thursday";
+			        break;
+			    case 5:
+			        weekday = "Friday";
+			        break;
+			    case 6:
+			        weekday = "Saturday";
+			        break;
+			}
+			console.log(fullDate);
+			console.log(day);
+			console.log(weekday);
+			$('section#calendar aside div').html(weekday);
+			$('section#calendar aside p').html(day);
 			$("div.day").on('click' , function(){
+				
+				$(this).addClass('selected-date');
 				console.log(this);
-				openmodal();
+				
 				var string = $(this).attr("id");
 					splitstring = string.split("_");
-					datesplit = splitstring[1].split("-");
+					datesplit = splitstring[2].split("-");
 					console.log(datesplit);
 					console.log(splitstring);
 				$(".modal").load("data/"+ splitstring[0] +".html", function(){
 				
+				
+				
+				$('section#calendar aside div').html(datesplit[2]);
+				$('section#calendar aside p').html(datesplit[2]);
+				console.log(datesplit);
 				});
 				return false;  
 				})
