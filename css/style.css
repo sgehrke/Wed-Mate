@@ -380,6 +380,7 @@ th a {
 	background: #ff6f47;
 	border-radius: 5px;
 }
+
 td {
 	padding: 10px;
 	text-align: center;
@@ -393,23 +394,24 @@ table tr:nth-child(even) {
    background-color:#fff;
 }
 
+.fa {
+	color: white;
+}
 /* *************** DASHBOARD Availablity Tab ************************** */
 #checker #cal-container {
-	max-width: 215px;
-	float: left;
-	margin-right: 30px;
+	max-width: 100%;
+	padding: 0 0 30px 0;
 
 }
 
 #blackoutTable {
-	width: 300px;
+	width: 500px;
 	float: left;
 	margin-right: 30px;
 
 }
 #mostViewedTable {
-	width: 215px;
-	float: left;
+	width: 270px;
 }
 
 
@@ -650,10 +652,6 @@ ol.progtrckr li.progtrckr-todo:before {
 }
 
 
-#calendar .calendar-month-header { 
-	color: black;
-	font-size: 2.5em;
-}
 
 #calendar section a {
 	position: absolute;
