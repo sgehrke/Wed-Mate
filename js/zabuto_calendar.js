@@ -567,7 +567,13 @@ $.fn.zabuto_calendar_defaults = function () {
         ajax: false,
         legend: false,
         action: false,
-        action_nav: false
+        action_nav: false,
+		callbacks: {
+	       on_cell_double_clicked: false,
+	       on_cell_clicked: false,
+	       on_nav_clicked: false,
+	       on_event_clicked: false
+	    }
     };
     return settings;
 };

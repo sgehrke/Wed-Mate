@@ -2,7 +2,7 @@
 <section id="register-modal">	
 	<form class="formLayout" method="POST" action="dashboard.php" onsubmit="return FrontPage_Form1_Validator(this)" name="FrontPage_Form1" language="JavaScript">	
 		<a class="close">×</a>
-		<h2>Event Details</h2>
+		<h2  id="dynamic-date">Event Detail</h2>
 			<input type="text" name="CompanyName" value="" placeholder="Company Name"></br>
 			<input type="url" name="LogoURL" value="" placeholder="Logo URL"></br>
 			<input type="url" name="Website" value="" placeholder="Website - http://"></br>
@@ -30,13 +30,3 @@
 
 </script>
 
-
-<script>
-	$(document).ready(function () {
-
-		$('.close').on('click', function() {
-		  $('.overlay, .modal').hide();
-		  return false;
-		})
-  	});
- </script>

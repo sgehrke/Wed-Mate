@@ -400,8 +400,6 @@ table tr:nth-child(even) {
 /* *************** DASHBOARD Availablity Tab ************************** */
 #checker #cal-container {
 	max-width: 100%;
-	padding: 0 0 30px 0;
-
 }
 
 #blackoutTable {

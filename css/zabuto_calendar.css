@@ -28,7 +28,6 @@ div.zabuto_calendar .table tr td {
 div.zabuto_calendar .table tr.calendar-month-header th {
 	color: white;
 	font-size: 2.5em;
-	height: 1.875em;
 	background: #457284;
 }
 }
@@ -53,7 +52,7 @@ div.zabuto_calendar .table tr:last-child {
 
 div.zabuto_calendar .table tr.calendar-month-header th {
     padding-top: 12px;
-    padding-bottom: 4px;
+    padding-bottom: 14px;
 }
 
 div.zabuto_calendar .table-bordered tr.calendar-month-header th {
@@ -98,8 +97,7 @@ div.zabuto_calendar .table tr td.event-clickable {
 /* badge */
 div.zabuto_calendar .badge-today,
 div.zabuto_calendar div.legend span.badge-today {
-    background-color: #357ebd;
-    color: #ffffff;
+    color: #19b5ea;
     text-shadow: none;
 }
 

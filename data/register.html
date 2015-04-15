@@ -30,29 +30,3 @@
 
 </script>
 
-
-<script>
-	$(document).ready(function () {
-		
-		$('.tooltip').each(function(){
-			var that = $(this), 
-				tip = that.next('.tipbox')
-			;
-
-			that.on('focus', function(){
-				tip.hide();
-			})
-			.bind('mouseenter', function(){
-				tip.show();
-			})
-			.bind('mouseleave', function(){
-				tip.hide();
-			})
-		});
-			;
-		$('.close').on('click', function() {
-		  $('.overlay, .modal').hide();
-		  return false;
-		})
-  	});
- </script>
