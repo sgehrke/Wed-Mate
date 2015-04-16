@@ -938,7 +938,7 @@ footer p:nth-child(2) {
 	
 }
 
-.formLayout [name=Submit] {
+.formLayout [name=submit] {
 	color: white;
 	margin-top: 10px;
 	height: 50px;

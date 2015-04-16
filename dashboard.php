@@ -1,3 +1,75 @@
+<?php
+
+	session_start();
+	if (isset($_SESSION['message'])) {
+		echo $_SESSION['message'];
+		unset($_SESSION['message']);
+	}
+	//setup MySQL database
+	$mysql = 'mysql:host=localhost; dbname=wedmate_db';//DSN
+	//$db = new PDO($mysql, 'root', 'root');
+	//the videos show to always use try/catch
+	try {
+		$db = new PDO($mysql, 'root', 'root');
+		$errorInfo = $db->errorInfo();
+		if (isset($errorInfo[2])) {
+			$error = $errorInfo[2];
+		}
+	} catch (PDOException $e) {
+		$error = $e->getMessage();
+		echo $error;
+	}
+
+	
+	// this makes sure that the user submitted the form by checking the request..Alternativley if ($_POST['submit']) but that can send request withut data
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		//Once the condition is met for begin storing the info in variables
+		$logourl = $_POST['logourl'];
+		$companyname = $_POST['companyname'];
+		$website = $_POST['website'];
+		$email = $_POST['email'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$epass = md5("encrypted".$password);
+	}
+		
+		//Added this query to create a condition to check against 
+		$query =  "SELECT * 
+					FROM users 
+					WHERE username = :username 
+					AND password = :password";
+		$stmt = $db->prepare($query);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':password', $password); // may need to change this to epass
+		$stmt->execute();
+		$errorInfo = $stmt->errorInfo();
+		if (isset($errorInfo[2])) {
+			$error = $errorInfo[2];
+			echo "<h1 style='color:white;background-color:red'>$error</h1>";
+			
+		} else {
+			$numRows = $stmt->rowCount();
+			//echo $numRows;
+			
+			if ($numRows > 0) {
+				$dupmessage = '<p class="dupmessage">That username is taken</p>';
+				echo $dupmessage;
+			} else {
+			//Take the variables from the user input and place them in an array that will be Inserted to the DB 
+			$stmt = $db->prepare("INSERT INTO users (username, password, companyname, email, website, logourl) VALUES (:username, :password, :companyname, :email, :website, :logourl);");
+			$_SESSION['message'] = "<div class='message'>Client was added Successfully!</div>";
+			$stmt->bindParam(':username', $username);
+			$stmt->bindParam(':password', $password);
+			$stmt->bindParam(':logourl', $logourl);
+			$stmt->bindParam(':email', $email);
+			$stmt->bindParam(':companyname', $companyname);
+			$stmt->bindParam(':website', $website);
+			$stmt->execute();
+			}
+		}
+	
+
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -42,6 +114,12 @@
 	</header>
 <!-- This secion is for the featured image slider and exerpt along its bottom -->
 	<section id="featureDash">
+		<?php
+			print_r($_POST);
+			echo $logourl . $companyname . $website . $email . $username .
+			$password . 
+			$epass;
+		?>
 		<p class="container"></p>
 		<div id="featOverlayDash">
 			<div class="container">
