@@ -44,11 +44,13 @@ $(document).ready(function () {
 	
 	$(".modal-window").on('click' , function(){
 		$(".modal").load("data/"+$(this).attr("id")+".php", function(){
+			
+			openmodal();
+
 			$('.close').on('click', function() {
 				$('.overlay, .modal').hide();
 				return false;
-			});
-		openmodal();	
+			});	
 			
 			$('.tooltip').each(function(){
 				var that = $(this), 

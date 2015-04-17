@@ -175,21 +175,6 @@ header nav a:hover {
 	border-radius: 5px;
 }
 
-#pageination {
-	position: absolute;
-	bottom: -25px;
-	left: 50%;
-	margin: 0 0px 0 -20px ;
-}
-.dot {
-    display: inline-block;
-    width:10px;height:10px;
-    border-radius:5px;
-    background-color:#b6b7b7;
-}
-.dot1 {
-    background-color: #6e6e6e;
-}
 
 /* **************************** Contact page ************************** */
 
@@ -935,14 +920,23 @@ footer p:nth-child(2) {
 	height: 48px;
 	border: 1px solid black;
 	border-radius: 5px;
-	
+}
+
+.formLayout [name=desc] {
+	padding-left: 10px;
+	padding-top: 15px;
+	width: 388px;
+	margin: 10px 0;
+	height: 100px;
+	border: 1px solid black;
+	border-radius: 5px;
 }
 
 .formLayout [name=submit] {
 	color: white;
 	margin-top: 10px;
 	height: 50px;
-	width: 400px;
+	width: 402px;
 	font-weight: 400;
 	text-align: center;
 	background: #ff6f47;
