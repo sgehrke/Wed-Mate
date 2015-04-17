@@ -31,16 +31,16 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$epass = md5("encrypted".$password);
-	}
+
 		
 		//Added this query to create a condition to check against 
 		$query =  "SELECT * 
 					FROM users 
 					WHERE username = :username 
-					AND password = :password";
+					AND epass = :epass";
 		$stmt = $db->prepare($query);
 		$stmt->bindParam(':username', $username);
-		$stmt->bindParam(':password', $password); // may need to change this to epass
+		$stmt->bindParam(':epass', $epass); // may need to change this to epass
 		$stmt->execute();
 		$errorInfo = $stmt->errorInfo();
 		if (isset($errorInfo[2])) {
@@ -56,19 +56,19 @@
 				echo $dupmessage;
 			} else {
 			//Take the variables from the user input and place them in an array that will be Inserted to the DB 
-			$stmt = $db->prepare("INSERT INTO users (username, password, companyname, email, website, logourl) VALUES (:username, :password, :companyname, :email, :website, :logourl);");
+			$stmt = $db->prepare("INSERT INTO users (username, email, companyname, epass, logourl, website) VALUES (:username, :email, :companyname, :epass, :logourl, :website);");
 			$_SESSION['message'] = "<div class='message'>Client was added Successfully!</div>";
 			$stmt->bindParam(':username', $username);
-			$stmt->bindParam(':password', $password);
-			$stmt->bindParam(':logourl', $logourl);
 			$stmt->bindParam(':email', $email);
-			$stmt->bindParam(':companyname', $companyname);
+			$stmt->bindParam(':companyname', $companyname);					
+			$stmt->bindParam(':epass', $epass);
+			$stmt->bindParam(':logourl', $logourl);
 			$stmt->bindParam(':website', $website);
 			$stmt->execute();
 			}
 		}
-	
-
+	}
+		
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -92,7 +92,9 @@
 	<div>
 		<nav>
 			<ul>
-				<li>Welcome You</li>
+				<?php echo "<li>Welcome {$username}</li>"
+					
+				?>
 			</ul>
 		</nav>
 	</div>
@@ -101,7 +103,7 @@
 <!-- Nav bar with logo floated left and nav floated right -->
 		<div class="container">
 			<h1>
-				<a href="index.html">
+				<a href="index.php">
 					<img src="images/webMateLogo/WedMate_Logo_186x100.png" alt="Wed-Mate Event Assitant Logo" height="75">
 				</a>
 			</h1>
@@ -114,12 +116,6 @@
 	</header>
 <!-- This secion is for the featured image slider and exerpt along its bottom -->
 	<section id="featureDash">
-		<?php
-			print_r($_POST);
-			echo $logourl . $companyname . $website . $email . $username .
-			$password . 
-			$epass;
-		?>
 		<p class="container"></p>
 		<div id="featOverlayDash">
 			<div class="container">
@@ -310,13 +306,13 @@
 
 	</section>
 
-	<a href="contact.html"><section id="subfooter" class="arrow_box">
+	<a href="contact.php"><section id="subfooter" class="arrow_box">
 		<h4>Get Support</h4>
 	</section></a>
 </main>
 	<footer>
 		<div class="container">
-			<p>Powered by &nbsp; &copy;<a href="index.html">Wed-Mate.com 2015</a> </p>
+			<p>Powered by &nbsp; &copy;<a href="index.php">Wed-Mate.com 2015</a> </p>
 			<p id="social">
 				<a href="twitter.com"><i class="fa fa-twitter"></i></a>
 				<a href="facebook.com"><i class="fa fa-facebook"></i></a>

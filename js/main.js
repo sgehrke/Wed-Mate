@@ -43,7 +43,7 @@ $(document).ready(function () {
 		};
 	
 	$(".modal-window").on('click' , function(){
-		$(".modal").load("data/"+$(this).attr("id")+".html", function(){
+		$(".modal").load("data/"+$(this).attr("id")+".php", function(){
 			$('.close').on('click', function() {
 				$('.overlay, .modal').hide();
 				return false;
@@ -128,7 +128,7 @@ $(document).ready(function () {
 				$('section#calendar aside div').html(weekday);
 				$('section#calendar aside p').html(datesplit[2]);
 				
-				$(".modal").load("data/"+ splitstring[0] +".html", function(){
+				$(".modal").load("data/"+ splitstring[0] +".php", function(){
 				
 				});
 	

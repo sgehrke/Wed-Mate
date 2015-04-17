@@ -35,8 +35,8 @@
 	
 	<section id="booked" class="container">
 		<h3>We regret to inform you that the date you are inquiring <br/> about has already been booked <br/>Feel Free to check our availablity on other dates</h3>
-		<h4><strong>There still might be a chance!</strong> Sometimes dates fall through and become available again. Please <a href="contact.html">contact us</a> if you are interested in joining out waiting list.</h4>
-		<a href="calendar.html">Check New Date</a>
+		<h4><strong>There still might be a chance!</strong> Sometimes dates fall through and become available again. Please <a href="contact.php">contact us</a> if you are interested in joining out waiting list.</h4>
+		<a href="calendar.php">Check New Date</a>
 			
 	</section>
 

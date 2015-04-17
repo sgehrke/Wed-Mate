@@ -26,7 +26,7 @@
 	</div>
 <!-- This secion is for the featured image slider and exerpt along its bottom -->
 	<section id="featureUX">
-		<a href="#home.html" target="_blank"><div id="userLogo" class="container">
+		<a href="#home.php" target="_blank"><div id="userLogo" class="container">
 		</div></a>
 		<div id="featOverlayUX">
 				<ol class="progtrckr" data-progtrckr-steps="3">
@@ -46,7 +46,7 @@
 			<div id="my-calendar">	
 			</div>
 			
-				<a href="booked.html" class="modal-window" id="event-info">Check Selected Date</a>
+				<a href="booked.php" class="modal-window" id="event-info">Check Selected Date</a>
 			
 		</section>
 		
@@ -57,7 +57,7 @@
 
 	<footer>
 		<div class="container">
-			<p>Powered by &nbsp; &copy;<a href="index.html">Wed-Mate.com 2015</a> </p>
+			<p>Powered by &nbsp; &copy;<a href="index.php">Wed-Mate.com 2015</a> </p>
 			<p id="social">
 				<a href="twitter.com"><i class="fa fa-twitter"></i></a>
 				<a href="facebook.com"><i class="fa fa-facebook"></i></a>
