@@ -11,7 +11,7 @@ $(document).ready(function () {
     /********************* Tabbed Menu index.html **********************************/
 
     $("#tab-content div:not(:first)").hide();
-	$("#tab-content div:not(:first)");
+	// $("#tab-content div:not(:first)");
     $("#tabs li").bind("click", function (event) {
         var id = $(event.target).index();
 
@@ -112,11 +112,11 @@ $(document).ready(function () {
 						openmodal();
 	
 						
-			}
+			
 		// The removeClass show only be on the calendar page....dashboard I want to show blackedout dates
 				$("div.day").removeClass("selected-date");
 				$(this).addClass("selected-date");
-	
+	}
 				var string = $(this).attr("id");
 					splitstring = string.split("_");
 					fulldow = splitstring[2];

@@ -5,9 +5,9 @@
 	$_SESSION['message'] = "<div class='message'>Your Delete was Successful!</div>";
 	
 
-	$packageId = $_GET['id'];
-	$stmt = $db->prepare("DELETE FROM packages WHERE id = :id");
-	$stmt->bindParam(':id', $packageId);
+	$eventsId = $_GET['id'];
+	$stmt = $db->prepare("DELETE FROM events WHERE id = :id");
+	$stmt->bindParam(':id', $eventsId);
 	$stmt->execute();
 	header('Location: dashboard.php');
 	

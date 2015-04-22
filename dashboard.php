@@ -21,7 +21,10 @@
 	$results = $db->query($optionsSql);
 	$options = $results->fetchAll(PDO::FETCH_ASSOC);
 
-	
+		$eventsSql = 'SELECT * FROM events
+			WHERE eventCreator ='.$_SESSION['id'];
+	$results = $db->query($eventsSql);
+	$events = $results->fetchAll(PDO::FETCH_ASSOC);
 
 		
 
@@ -110,7 +113,7 @@
 								    <td>'.$package["packageName"].'</td>
 								    <td>'.$package["packagePrice"].'</td>		
 								    <td><a class="update" href="update-package.php?id='.$package['id'].'">Edit</a></td>
-								    <td><a href="delete-package.php?id='.$package['id'].'">Delete</a></td>
+								    <td><a class="delete" href="delete-package.php?id='.$package['id'].'">Delete</a></td>
 								    <td></td> 
 								 </tr>'; }
 							  ?>
@@ -134,7 +137,7 @@
 								    <td>'.$option["optionName"].'</td>
 								    <td>'.$option["optionPrice"].'</td>		
 								    <td><a class="update" href="update-option.php?id='.$option['id'].'">Edit</a></td>
-								    <td><a href="delete-option.php?id='.$option['id'].'">Delete</a></td>
+								    <td><a class="delete" href="delete-option.php?id='.$option['id'].'">Delete</a></td>
 								    <td></td> 
 								 </tr>'; }
 							  ?>		
@@ -163,28 +166,6 @@
 							    <td>X</td>
 
 							  </tr>
-							  <tr>
-							    <td>Jill</td>
-							    <td>Today</td>		
-							    <td>Yesterday</td>
-							    <td><a href="#view">View</a></td>
-							    <td>X</td>
-							  </tr>
-							   <tr>
-							    <td>Jill</td>
-							    <td>Today</td>		
-							    <td>Yesterday</td>
-							    <td><a href="#view">View</a></td>
-							    <td>X</td>
-
-							  </tr>
-							  <tr>
-							    <td>Jill</td>
-							    <td>Today</td>		
-							    <td>Yesterday</td>
-							    <td><a href="#view">View</a></td>
-							    <td>X</td>
-							  </tr>
 					
 							</table>
 						</section>
@@ -202,42 +183,35 @@
 								<section id="cal-container">
 								
 									<section id="my-calendar"></section>
-								</section>		
-									<table id="blackoutTable">
-									  <tr>
-									    <th colspan="3">Dates Blacked Out</th>							 
-									  </tr>
-									  <tr>
-									  	<td >March 24, 2015</td>
-									  	<td><a href="#view Details" class="modal-window" id="details">View</a></td>
-									  	<td><a href="#delete">x</a></td> <!-- setup an confirm box before delete  -->				
-									  </tr>
-									  <tr>
-									  	<td >March 26, 2015</td>
-									  	<td><a href="#view Details" class="modal-window" id="details">View</a></td>
-									  	<td><a href="#delete">x</a></td>							
-									  </tr>
-									  <tr>
-									  	<td >March 02, 2015</td>
-									  	<td><a href="#view Details" class="modal-window" id="details">View</a></td>
-									  	<td><a href="#delete">x</a></td>							
-									  </tr>		
-									</table>
-								
-									<table id="mostViewedTable">
-									 <tr>
-									    <th>Most Viewed Dates</th>							   
-									  </tr>
-									  <tr>							    
-									    <td>March 24, 2015</td>
-									  </tr>
-									  <tr>							    
-									    <td >March 26, 2015</td>
-									  </tr>
-									  <tr>							    
-										<td >March 02, 2015</td>
-									  </tr>
-									</table>
+									
+									<section class="tables">
+										<table id="blackoutTable">
+										  <tr>
+										    <th colspan="3">Dates Blacked Out
+										    </th>	 
+										  </tr>
+	<!-- DYNAMIC BLACKOUT DATES -->
+									<?php
+									  	foreach ($events as $event) {
+									  	echo 
+									  '<tr>
+									    <td>'.$event["eventDate"].'</td>	
+									    <td><a class="update" href="update-zabuto.php?id='.$event['id'].'">View</a></td>
+									    <td><a class="delete" href="delete-event.php?id='.$event['id'].'">Delete</a></td> 
+									 </tr>'; }
+								  ?>
+										  	
+										</table>
+									
+										<table id="mostViewedTable">
+										 <tr>
+										    <th>Most Viewed Dates</th>							   
+										  </tr>
+										  <tr><td>FILLER</td></tr>
+										  <!-- <tr><td>FILLER</td></tr> -->
+										  
+										</table>
+									</section>
 								</section>
 						</section>	
 					</div> <!-- Avail checker div -->
@@ -272,16 +246,32 @@
 </html>
 
 <script>
-
-	    $(".update").on('click', function () {  
-		var	url = $(this).attr("href");
-			console.log(url);
-		$.ajax( {
+	$( document ).ready(function() {
+		// When clicking delete where the class name is delete the confirm message is shown
+		$('.delete').click(function(){
+				return window.confirm(this.title || 'Are you sure you would like to delete');		
+			});
 			
+	});
+</script>
+
+<script>
+		
+	    $(".update").on('click', function () {  
+		    //jquery stops the form from submitting to PHP processing
+		    //stores the unique variable of the clicked edit button using its href attribute
+		var	url = $(this).attr("href");
+			//console.log(url);
+		$.ajax( {
+			//this is where the ajax sends the url for processing ...PHP page
 			url: url,
+			// Get puts the variable in the URL so it is usable on teh PHP page
+			//It is using the ID from the database in the URL to process unique items
 			type: "GET",
+			//The PHP will return the processed page as a responce and can be used in the success function callback
 			success: function(data) {
-				//console.log(data);
+				console.log(data);
+				//Here is where we create the modal window and load in the html from the PHP response.
 				var olay = $('<div class="overlay" />').appendTo(document.body).hide();
 				var modal = $('<div class="modal" />').appendTo(document.body).hide();
 					

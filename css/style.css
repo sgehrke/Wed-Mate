@@ -383,18 +383,24 @@ table tr:nth-child(even) {
 	color: white;
 }
 /* *************** DASHBOARD Availablity Tab ************************** */
+
 #checker #cal-container {
 	max-width: 100%;
 }
 
 #blackoutTable {
 	width: 500px;
-	float: left;
 	margin-right: 30px;
+	float: left;
+		overflow: hidden;
 
 }
 #mostViewedTable {
 	width: 270px;
+}
+.tables {
+	overflow: hidden;
+
 }
 
 
