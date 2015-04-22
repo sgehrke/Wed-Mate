@@ -109,7 +109,7 @@
 								  '<tr>
 								    <td>'.$package["packageName"].'</td>
 								    <td>'.$package["packagePrice"].'</td>		
-								    <td><a class="package" id="'.$package['id'].'">Edit</a></td>
+								    <td><a class="update" href="update-package.php?id='.$package['id'].'">Edit</a></td>
 								    <td><a href="delete-package.php?id='.$package['id'].'">Delete</a></td>
 								    <td></td> 
 								 </tr>'; }
@@ -133,7 +133,7 @@
 								  '<tr>
 								    <td>'.$option["optionName"].'</td>
 								    <td>'.$option["optionPrice"].'</td>		
-								    <td><a class="modal-window" id="update-package" href="update-option.php?id='.$option['id'].'">Edit</a></td>
+								    <td><a class="update" href="update-option.php?id='.$option['id'].'">Edit</a></td>
 								    <td><a href="delete-option.php?id='.$option['id'].'">Delete</a></td>
 								    <td></td> 
 								 </tr>'; }
@@ -273,15 +273,15 @@
 
 <script>
 
-	    $(".package").on('click', function () {
-		var id = $(this).attr("id");  
-			url = "update-package.php?id=" + id;
+	    $(".update").on('click', function () {  
+		var	url = $(this).attr("href");
+			console.log(url);
 		$.ajax( {
 			
 			url: url,
 			type: "GET",
 			success: function(data) {
-				console.log(data);
+				//console.log(data);
 				var olay = $('<div class="overlay" />').appendTo(document.body).hide();
 				var modal = $('<div class="modal" />').appendTo(document.body).hide();
 					
