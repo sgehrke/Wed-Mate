@@ -45,7 +45,7 @@
 	</section>
 <!-- This section will be the two main articles - One for features and one for Why us -->
 	<section id="contactForm" class="container">		
-		<form action="index.php" method="GET">
+		<form action="mailto:{email}" method="GET">
 			<h2>Contact Details</h2>
 			<h4>Use the form to describe your request</h4>
 			<input type="text" name="name"/>

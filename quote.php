@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -60,7 +63,7 @@
 			</table>
 
 			<p><strong>This is only an estimate.</strong> In no way does this event quote bind either party into a contract. If you would like to move forward with the booking process please <a href="#companyURLforBooking">contact us</a> as soon as possible.</p>
-			<div><a href="#modalgenerator.html">Adjust Quote</a><a href="calendar.html">Print Quote</a></div>
+			<div><a href="calendar.php">Adjust Quote</a><a href="this will send to there website or email">Book Date</a></div>
 		</section>
 	</section>
 	

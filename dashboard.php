@@ -1,74 +1,30 @@
 <?php
-
+	require_once('db_con.php');
 	session_start();
+	if (isset($_SESSION['username'])==false){
+		//redirect to index
+		header("Location: index.php");
+	}
 	if (isset($_SESSION['message'])) {
 		echo $_SESSION['message'];
+		//echo $_SESSION['username'];
 		unset($_SESSION['message']);
 	}
-	//setup MySQL database
-	$mysql = 'mysql:host=localhost; dbname=wedmate_db';//DSN
-	//$db = new PDO($mysql, 'root', 'root');
-	//the videos show to always use try/catch
-	try {
-		$db = new PDO($mysql, 'root', 'root');
-		$errorInfo = $db->errorInfo();
-		if (isset($errorInfo[2])) {
-			$error = $errorInfo[2];
-		}
-	} catch (PDOException $e) {
-		$error = $e->getMessage();
-		echo $error;
-	}
+	//print_r($_SESSION);
+	$packagesSql = 'SELECT * FROM packages
+			WHERE packageCreator ='.$_SESSION['id'];
+	$results = $db->query($packagesSql);
+	$packages = $results->fetchAll(PDO::FETCH_ASSOC);
+	
+	$optionsSql = 'SELECT * FROM options
+			WHERE optionCreator ='.$_SESSION['id'];
+	$results = $db->query($optionsSql);
+	$options = $results->fetchAll(PDO::FETCH_ASSOC);
 
 	
-	// this makes sure that the user submitted the form by checking the request..Alternativley if ($_POST['submit']) but that can send request withut data
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		//Once the condition is met for begin storing the info in variables
-		$logourl = $_POST['logourl'];
-		$companyname = $_POST['companyname'];
-		$website = $_POST['website'];
-		$email = $_POST['email'];
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		$epass = md5("encrypted".$password);
 
 		
-		//Added this query to create a condition to check against 
-		$query =  "SELECT * 
-					FROM users 
-					WHERE username = :username 
-					AND epass = :epass";
-		$stmt = $db->prepare($query);
-		$stmt->bindParam(':username', $username);
-		$stmt->bindParam(':epass', $epass); // may need to change this to epass
-		$stmt->execute();
-		$errorInfo = $stmt->errorInfo();
-		if (isset($errorInfo[2])) {
-			$error = $errorInfo[2];
-			echo "<h1 style='color:white;background-color:red'>$error</h1>";
-			
-		} else {
-			$numRows = $stmt->rowCount();
-			//echo $numRows;
-			
-			if ($numRows > 0) {
-				$dupmessage = '<p class="dupmessage">That username is taken</p>';
-				echo $dupmessage;
-			} else {
-			//Take the variables from the user input and place them in an array that will be Inserted to the DB 
-			$stmt = $db->prepare("INSERT INTO users (username, email, companyname, epass, logourl, website) VALUES (:username, :email, :companyname, :epass, :logourl, :website);");
-			$_SESSION['message'] = "<div class='message'>Client was added Successfully!</div>";
-			$stmt->bindParam(':username', $username);
-			$stmt->bindParam(':email', $email);
-			$stmt->bindParam(':companyname', $companyname);					
-			$stmt->bindParam(':epass', $epass);
-			$stmt->bindParam(':logourl', $logourl);
-			$stmt->bindParam(':website', $website);
-			$stmt->execute();
-			}
-		}
-	}
-		
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -92,7 +48,7 @@
 	<div>
 		<nav>
 			<ul>
-				<?php echo "<li>Welcome {$username}</li>"
+				<?php echo "<li>Welcome {$_SESSION['username']}</li>"
 					
 				?>
 			</ul>
@@ -109,7 +65,7 @@
 			</h1>
 			<nav>
 				<ul>
-					<li><a href="#feature">Log out</a></li>
+					<li><a id="logOut" href="logout.php">Log out</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -146,21 +102,19 @@
 							    <th>Delete</th>
 							    <th><a href="#add" class="modal-window" id="new-package">Add New</a></th>
 							  </tr>
-							  <tr>
-							    <td>Jill</td>
-							    <td>Smith</td>		
-							    <td>50</td>
-							    <td>X</td>
-							    <td></td>
-							  </tr>
-							  <tr>
-							    <td>Jill</td>
-							    <td>Smith</td>		
-							    <td>50</td>
-							    <td>X</td>
-							    <td></td>
-							  </tr>
-					
+							 
+							  <?php
+							  	foreach ($packages as $package) {
+								  	echo 
+								  '<tr>
+								    <td>'.$package["packageName"].'</td>
+								    <td>'.$package["packagePrice"].'</td>		
+								    <td><a class="modal-window" id="update-package" href="update-package.php?id='.$package['id'].'">Edit</a></td>
+								    <td><a href="delete-package.php?id='.$package['id'].'">Delete</a></td>
+								    <td></td> 
+								 </tr>'; }
+							  ?>
+						
 							</table>
 							
 							<br>
@@ -173,27 +127,17 @@
 							    <th>Delete</th>
 							    <th><a href="#add" class="modal-window" id="new-option">Add New</a></th>
 							  </tr>
-							  <tr>
-							    <td>Jill</td>
-							    <td>Smith</td>		
-							    <td>50</td>
-							    <td>X</td>
-							    <td></td>
-							  </tr>
-							  <tr>
-							    <td>Jill</td>
-							    <td>Smith</td>		
-							    <td>50</td>
-							    <td>X</td>
-							    <td></td>
-							  </tr>
-							  <tr>
-							    <td>Jill</td>
-							    <td>Smith</td>		
-							    <td>50</td>
-							    <td>X</td>
-							    <td></td>
-							  </tr>				
+							  <?php
+							  	foreach ($options as $option) {
+								  	echo 
+								  '<tr>
+								    <td>'.$option["optionName"].'</td>
+								    <td>'.$option["optionPrice"].'</td>		
+								    <td><a class="modal-window" id="update-package" href="update-option.php?id='.$option['id'].'">Edit</a></td>
+								    <td><a href="delete-option.php?id='.$option['id'].'">Delete</a></td>
+								    <td></td> 
+								 </tr>'; }
+							  ?>		
 							</table>
 						</section>
 						
@@ -265,17 +209,17 @@
 									  </tr>
 									  <tr>
 									  	<td >March 24, 2015</td>
-									  	<td><a href="#view Details" class="modal-window" id="detail">View</a></td>
+									  	<td><a href="#view Details" class="modal-window" id="details">View</a></td>
 									  	<td><a href="#delete">x</a></td> <!-- setup an confirm box before delete  -->				
 									  </tr>
 									  <tr>
 									  	<td >March 26, 2015</td>
-									  	<td><a href="#view Details" class="modal-window" id="detail">View</a></td>
+									  	<td><a href="#view Details" class="modal-window" id="details">View</a></td>
 									  	<td><a href="#delete">x</a></td>							
 									  </tr>
 									  <tr>
 									  	<td >March 02, 2015</td>
-									  	<td><a href="#view Details" class="modal-window" id="detail">View</a></td>
+									  	<td><a href="#view Details" class="modal-window" id="details">View</a></td>
 									  	<td><a href="#delete">x</a></td>							
 									  </tr>		
 									</table>
@@ -326,3 +270,4 @@
 </body>
 
 </html>
+

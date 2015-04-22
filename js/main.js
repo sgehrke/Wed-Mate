@@ -10,8 +10,6 @@ $(document).ready(function () {
 
     /********************* Tabbed Menu index.html **********************************/
 
-    
-
     $("#tab-content div:not(:first)").hide();
 	$("#tab-content div:not(:first)");
     $("#tabs li").bind("click", function (event) {
@@ -26,7 +24,7 @@ $(document).ready(function () {
     /********************* LOGIN **********************************/
  
  
-	// This is going to be an attempt at a modal window for the guest button in the footer
+	// This is going to be an attempt at a modal window 
 	var olay = $('<div class="overlay" />').appendTo(document.body).hide();
 	var modal = $('<div class="modal" />').appendTo(document.body).hide();
  	
@@ -42,12 +40,13 @@ $(document).ready(function () {
 		 	})
 		};
 	
-	$(".modal-window").on('click' , function(){
-		$(".modal").load("data/"+$(this).attr("id")+".php", function(){
-			
-			openmodal();
+	$(".modal-window").on('click' , function(e){
+		$(".modal").load($(this).attr("id")+".php", function(){
 
+			openmodal();
+			
 			$('.close').on('click', function() {
+				console.log(this);
 				$('.overlay, .modal').hide();
 				return false;
 			});	
@@ -67,7 +66,7 @@ $(document).ready(function () {
 					tip.hide();
 				})
 			});
-			
+		
 		});
 		
 	return false;  
@@ -83,7 +82,6 @@ $(document).ready(function () {
 	  }
 	}); 
  
-	
 //    CALENDAR
 
 
@@ -105,7 +103,8 @@ $(document).ready(function () {
 	//var date = $("#" + id).data("date");
 	//var hasEvent = $("#" + id).data("hasEvent");
 	
-			$("td div.day").on('click' , function(){
+		$("tr.calendar-dow").delegate(".dow-clickable", 'click' , function(){
+					console.log(this);				
 							
 		// This openmodel is only for the dashboard page	
 			if($('section').is('#checker')){
@@ -130,7 +129,7 @@ $(document).ready(function () {
 				$('section#calendar aside div').html(weekday);
 				$('section#calendar aside p').html(datesplit[2]);
 				
-				$(".modal").load("data/"+ splitstring[0] +".php", function(){
+				$(".modal").load(splitstring[0] +".php", function(){
 				
 				});
 	
@@ -139,6 +138,7 @@ $(document).ready(function () {
 		});
 	return true;
 	}
+
 
 
 	var fullDate = new Date();
@@ -174,6 +174,13 @@ $(document).ready(function () {
 	};	
 
 	$('section#calendar aside p').html(day);
+
+
+
+
+    /********************* LOGOUT **********************************/
+
+
 
 
 }); // end private scope

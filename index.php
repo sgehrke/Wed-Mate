@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
 
@@ -16,8 +17,8 @@
 	<div>
 		<nav>
 			<ul>
-				<li><a href="dashboard.php" class="modal-window" id="login">Log in &nbsp;|</a></li> <!-- Temp link to UX -->
-				<li><a href="#modal" class="modal-window" id="register">&nbsp; Register</a></li>
+				<li><a href="login.php" class="modal-window" id="login">Log in &nbsp;|</a></li> <!-- Temp link to UX -->
+				<li><a href="register.php" class="modal-window" id="register">&nbsp; Register</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -51,7 +52,7 @@
 		<div id="featOverlay">
 			<div class="container">
 				<p><strong>What is Wed-Mate? </strong>Wed-Mate is an event assistant made for wedding professionals. It is designed to help ease the burden of replying to numerous inquiries regarding pricing and availability. Sign up to learn about our event tools.</p>
-			<a href="link to modal window" class="modal-window" id="register">Sign up</a>
+			<a href="register.php" class="modal-window" id="register">Sign up</a>
 			</div>
 		</div>
 	</section>
