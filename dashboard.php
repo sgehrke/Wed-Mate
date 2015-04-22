@@ -109,7 +109,7 @@
 								  '<tr>
 								    <td>'.$package["packageName"].'</td>
 								    <td>'.$package["packagePrice"].'</td>		
-								    <td><a class="modal-window" id="update-package" href="update-package.php?id='.$package['id'].'">Edit</a></td>
+								    <td><a class="package" id="'.$package['id'].'">Edit</a></td>
 								    <td><a href="delete-package.php?id='.$package['id'].'">Delete</a></td>
 								    <td></td> 
 								 </tr>'; }
@@ -270,4 +270,65 @@
 </body>
 
 </html>
+
+<script>
+
+	    $(".package").on('click', function () {
+		var id = $(this).attr("id");  
+			url = "update-package.php?id=" + id;
+		$.ajax( {
+			
+			url: url,
+			type: "GET",
+			success: function(data) {
+				console.log(data);
+				var olay = $('<div class="overlay" />').appendTo(document.body).hide();
+				var modal = $('<div class="modal" />').appendTo(document.body).hide();
+					
+					var openmodal = function(){
+						modal.animate({opacity:1});
+							olay.add(modal).show().css({opacity:0});
+							olay.animate({opacity:.8}, 100);
+					};
+					
+					var closemodal = function(){
+					 	olay.add(modal).animate({opacity:0}, function(){	
+							$(this).hide(); 	
+					 	})
+					};
+					
+					
+					openmodal();
+				$(".modal").html(data);				
+				
+				
+				
+				$('.close').on('click', function() {
+					console.log(this);
+					$('.overlay, .modal').hide();
+					return false;
+				});	
+
+					
+					
+				olay.on('click', closemodal);
+				
+				
+				
+				$(window).on('keyup', function(e){
+				  if (e.which === 27 ){
+					  closemodal();
+				  }
+				}); 
+ 
+
+			}
+			
+		});
+
+
+	return false;
+    });
+
+</script>
 

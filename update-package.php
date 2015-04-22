@@ -14,7 +14,6 @@
 		
 		
 	$packageId = $_GET['id'];
-
 	$stmt = $db->prepare("SELECT * FROM packages
 			WHERE id = :id");
 	$stmt->bindParam(':id', $packageId);
@@ -38,7 +37,7 @@
 			packagePrice=:packagePrice,
 			packageDeposit=:packageDeposit,
 			overRate=:overRate,
-			packageDesc=:packageDesc,
+			packageDesc=:packageDesc
 			WHERE id = :id;");
 			
 		$stmt->bindParam(':id', $packageId);
@@ -47,15 +46,14 @@
 		$stmt->bindParam(':packagePrice', $packagePrice);
 		$stmt->bindParam(':packageDeposit', $packageDeposit);
 		$stmt->bindParam(':overRate', $overRate);
-		$stmt->bindParam(':packageDesc', $packageDesc);
-		
+		$stmt->bindParam(':packageDesc', $packageDesc);	
 		$stmt->execute();
 		header("Location: dashboard.php");
 		// $_SESSION['$packageName'] = $packageName;			
 	}	
 
 ?>
-	
+
 <section id="register-modal">	
 	<form class="formLayout" method="POST" action="update-package.php?id=<?php echo $package['id'];?>">	
 		<a class="close">×</a>
