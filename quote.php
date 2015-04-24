@@ -1,6 +1,26 @@
 <?php
+
+	require_once('db_con.php');
 	session_start();
+	if (isset($_SESSION['message'])) {
+		echo $_SESSION['message'];
+		unset($_SESSION['message']);
+	}
+	
+// 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	
+		$quotes = "SELECT * FROM quotes
+				WHERE id = ".$_SESSION['lastId'] ;			
+		$results = $db->query($quotes);
+		$quote = $results->fetch(PDO::FETCH_ASSOC);
+/*
+		print_r($quote);
+		die();
+*/
+
+// 	}	
 ?>
+
 <!DOCTYPE HTML>
 <html>
 
@@ -46,24 +66,42 @@
 			<table>
 				<tr>
 		            <th scope="row">Package</th>
-		            <td>This will display package detail</td>
+		            <td><?php
+						echo $quote['quotePackage'];
+					?></td>
 		        </tr>
 		        <tr>
 		            <th scope="row">Options</th>
-		            <td>This will display option detail</td>
+		            <td><?php
+						echo $quote['quoteOption'];
+					?></td>
 		        </tr>
 		        <tr>
 		            <th scope="row">Overtime Hours</th>
-		            <td>This will display price for overtime hours</td>
+		            <td><?php 
+			           if ($quote['overTime']){
+				         
+							echo $quote['overTime'];
+						
+						} else { echo "Not Needed";}
+					?></td>
 		        </tr>
 		        <tr>
 		            <th scope="row">Total</th><div class="arrow-right"></div>
-		            <td>This will display the Price</td>
+		            <td>
+					<?php
+						echo '$'.$quote['quotePrice'].'.00';
+					?></td>
 		        </tr>		
 			</table>
 
 			<p><strong>This is only an estimate.</strong> In no way does this event quote bind either party into a contract. If you would like to move forward with the booking process please <a href="#companyURLforBooking">contact us</a> as soon as possible.</p>
-			<div><a href="calendar.php">Adjust Quote</a><a href="this will send to there website or email">Book Date</a></div>
+			<div>
+				<td><?php
+					echo '<a class="update" href="update-quote.php?id='.$quote['id'].'">Adjust Quote</a>';
+				?>
+				<a href="this will send to there website or email">Book Date</a>
+			</div>
 		</section>
 	</section>
 	
@@ -86,6 +124,7 @@
 	<script src="js/jquery-2.1.0.min.js"></script>
 	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 	<script src="js/zabuto_calendar.min.js"></script>
+	<script src="js/jquery.maskedinput.js"></script>
 	<!-- main -->
 	<script type="text/javascript" src="js/main.js"></script>	
 
@@ -93,3 +132,72 @@
 </body>
 
 </html>
+
+<script>
+	
+	    $(".update").on('click', function () {  
+		    //jquery stops the form from submitting to PHP processing
+		    //stores the unique variable of the clicked edit button using its href attribute
+		var	url = $(this).attr("href");
+			//console.log(url);
+		$.ajax( {
+			//this is where the ajax sends the url for processing ...PHP page
+			url: url,
+			// Get puts the variable in the URL so it is usable on teh PHP page
+			//It is using the ID from the database in the URL to process unique items
+			type: "GET",
+			//The PHP will return the processed page as a responce and can be used in the success function callback
+			success: function(data) {
+				console.log(data);
+				//Here is where we create the modal window and load in the html from the PHP response.
+				var olay = $('<div class="overlay" />').appendTo(document.body).hide();
+				var modal = $('<div class="modal" />').appendTo(document.body).hide();
+					
+					var openmodal = function(){
+						modal.animate({opacity:1});
+							olay.add(modal).show().css({opacity:0});
+							olay.animate({opacity:.8}, 100);
+					};
+					
+					var closemodal = function(){
+					 	olay.add(modal).animate({opacity:0}, function(){	
+							$(this).hide(); 	
+					 	})
+					};
+					
+					
+					openmodal();
+				$(".modal").html(data);				
+				
+				
+				
+				$('.close').on('click', function() {
+					console.log(this);
+					$('.overlay, .modal').hide();
+					return false;
+				});	
+
+					
+					
+				olay.on('click', closemodal);
+				
+				
+				
+				$(window).on('keyup', function(e){
+				  if (e.which === 27 ){
+					  closemodal();
+				  }
+				}); 
+ 
+
+			}
+			
+		});
+
+
+	return false;
+    });
+
+</script>
+
+

@@ -12,23 +12,59 @@
 	}
 	
 
-	$packagesSql = 'SELECT * FROM packages
-			WHERE packageCreator ='.$_SESSION['id'];
-	$results = $db->query($packagesSql);
-	$packages = $results->fetchAll(PDO::FETCH_ASSOC);
-/*
-	print_r($packages);
-		die();	
-*/
-	$optionsSql = 'SELECT * FROM options
-			WHERE optionCreator ='.$_SESSION['id'];
-	$results = $db->query($optionsSql);
-	$options = $results->fetchAll(PDO::FETCH_ASSOC);
-	
-
-
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$quoteId = $_GET['id'];
+		$stmt = $db->prepare("SELECT * FROM quotes
+				WHERE id = :id");
+		$stmt->bindParam(':id', $quoteId);
+		$stmt->execute();
+		$quote = $stmt->fetch(PDO::FETCH_ASSOC);
 		
+
+		$packagesSql = 'SELECT * FROM packages
+				WHERE packageCreator ='.$_SESSION['id'];
+		$results = $db->query($packagesSql);
+		$packages = $results->fetchAll(PDO::FETCH_ASSOC);
+		
+	
+		$optionsSql = 'SELECT * FROM options
+				WHERE optionCreator ='.$_SESSION['id'];
+		$results = $db->query($optionsSql);
+		$options = $results->fetchAll(PDO::FETCH_ASSOC);
+	
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+		$quoteId = $_GET['id'];
+		$stmt = $db->prepare("SELECT * FROM quotes
+				WHERE id = :id");
+		$stmt->bindParam(':id', $quoteId);
+		$stmt->execute();
+		$quote = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+
+		$packagesSql = 'SELECT * FROM packages
+				WHERE packageCreator ='.$_SESSION['id'];
+		$results = $db->query($packagesSql);
+		$packages = $results->fetch(PDO::FETCH_ASSOC);
+		
+	
+		$optionsSql = 'SELECT * FROM options
+				WHERE optionCreator ='.$_SESSION['id'];
+		$results = $db->query($optionsSql);
+		$options = $results->fetch(PDO::FETCH_ASSOC);
+
+		
+		$totalTime = $quote['endTime'] - $quote['startTime'];
+		 	if ($totalTime <= $packages['packageHours']){
+			 	$overage = 0;
+		 	} else {
+			 	$overage = $totalTime - $packages['packageHours'];
+		 	}
+		 	
+		$overTime = ($packages['overRate']* 2 ) * $overage;
+	
+		$quotePrice = $packages['packagePrice'] + $options['optionPrice'] + $overTime  ;	
+			
+		$quoteId = $_GET['id'];
 		$quoteName = $_POST['quoteName'] ;
 		$quoteDate = $_POST['quoteDate'] ;
 		$quoteEmail = $_POST['quoteEmail'];
@@ -39,57 +75,44 @@
 		$quotePackage = $_POST['quotePackage'] ;
 		$quoteOption = $_POST['quoteOption'] ;
 		$quoteSubmitted = date('Y-m-d G:i:s') ;
-		$quoteCreator = $_SESSION['id'];
+		$overTime = $quote['overTime'];
+		$quotePrice = $packages['packagePrice'] + $options['optionPrice'] + $overTime  ;		
 	
-
+		$stmt = $db->prepare("UPDATE quotes SET
+			quoteName=:quoteName,
+			quoteDate=:quoteDate,
+			quoteEmail=:quoteEmail,
+			quotePhone=:quotePhone,
+			quoteLocation=:quoteLocation,
+			startTime=:startTime,
+			endTime=:endTime,
+			quotePackage=:quotePackage,
+			quoteOption=:quoteOption,
+			overTime=:overTime,
+			quotePrice=:quotePrice,
+			quoteSubmitted=:quoteSubmitted
+			WHERE id = :id;");
 			
- 
- 
- 
-		$packagesSql = "SELECT * FROM packages
-				WHERE packageName = '$quotePackage'";			
-		$results = $db->query($packagesSql);
-		$packages = $results->fetch(PDO::FETCH_ASSOC);
-		
-		$optionsSql = "SELECT * FROM options
-				WHERE optionName = '$quoteOption'";			
-		$results = $db->query($optionsSql);
-		$options = $results->fetch(PDO::FETCH_ASSOC);
-		
-	 	$totalTime = $endTime - $startTime;
-	 	if ($totalTime <= $packages['packageHours']){
-		 	$overage = 0;
-	 	} else {
-		 	$overage = $totalTime - $packages['packageHours'];
-	 	}
-	 	
-		$overTime = ($packages['overRate']* 2 ) * $overage;
-	
-		$quotePrice = $packages['packagePrice'] + $options['optionPrice'] + $overTime  ;
- 
 
-					//Take the variables from the user input and place them in an array that will be Inserted to the DB 
-				$stmt = $db->prepare("INSERT INTO quotes (quoteName, quoteDate, quoteEmail, quotePhone, quoteLocation, startTime, endTime, quotePackage, quoteOption, overTime, quotePrice, quoteSubmitted, quoteCreator) VALUES (:quoteName, :quoteDate, :quoteEmail, :quotePhone, :quoteLocation, :startTime, :endTime, :quotePackage, :quoteOption, :overTime, :quotePrice, :quoteSubmitted, :quoteCreator);");
-				
-				$stmt->bindParam(':quoteName', $quoteName);
-				$stmt->bindParam(':quoteDate', $quoteDate);
-				$stmt->bindParam(':quoteEmail', $quoteEmail);
-				$stmt->bindParam(':quotePhone', $quotePhone);
-				$stmt->bindParam(':quoteLocation', $quoteLocation);		
-				$stmt->bindParam(':startTime', $startTime);
-				$stmt->bindParam(':endTime', $endTime);
-				$stmt->bindParam(':quotePackage', $quotePackage);
-				$stmt->bindParam(':quoteOption', $quoteOption);	
-				$stmt->bindParam(':overTime', $overTime);
-				$stmt->bindParam(':quotePrice', $quotePrice);
-				$stmt->bindParam(':quoteSubmitted', $quoteSubmitted);	
-				$stmt->bindParam(':quoteCreator', $quoteCreator);				
-				$stmt->execute();
-				$_SESSION['lastId'] = $db->lastInsertId();
-				header("Location: quote.php");
-				// $_SESSION['$quoteName'] = $quoteName;				
 
-//After INSERT SELECT THE TABLES AND CONTRUCT THE VARIABLES TO SHOW THE QUOTE
+		$stmt->bindParam(':id', $quoteId);	
+		$stmt->bindParam(':quoteName', $quoteName);
+		$stmt->bindParam(':quoteDate', $quoteDate);
+		$stmt->bindParam(':quoteEmail', $quoteEmail);
+		$stmt->bindParam(':quotePhone', $quotePhone);
+		$stmt->bindParam(':quoteLocation', $quoteLocation);		
+		$stmt->bindParam(':startTime', $startTime);
+		$stmt->bindParam(':endTime', $endTime);
+		$stmt->bindParam(':quotePackage', $quotePackage);
+		$stmt->bindParam(':quoteOption', $quoteOption);	
+		$stmt->bindParam(':overTime', $overTime);
+		$stmt->bindParam(':quotePrice', $quotePrice);
+		$stmt->bindParam(':quoteSubmitted', $quoteSubmitted);	
+		$stmt->execute();
+		header("Location: quote.php");
+			
+
+//After UPDATE SELECT THE TABLES AND CONTRUCT THE VARIABLES TO SHOW THE QUOTE
 
 	}	
 
@@ -98,14 +121,26 @@
 
 ?>	
 <section id="register-modal">	
-	<form class="formLayout" method="POST" action="event-info.php" onsubmit="return FrontPage_Form1_Validator(this)" name="FrontPage_Form1" language="JavaScript">	
+	<form class="formLayout" method="POST" action="update-quote.php?id=<?php
+		echo $quoteId;
+	?>">	
 		<a class="close">×</a>
-		<h2 class="dynamic-date">Event Date: </h2>
-			<input class="dynamic-date" type="text" name="quoteDate" placeholder="Date"></br>
-			<input type="text" name="quoteName" value="" placeholder="Name"></br>
-			<input id="email" type="email" name="quoteEmail" value="" placeholder="Email"></br>
-			<input id="phone" type="phone" name="quotePhone" value="" placeholder="Phone"></br>
-			<input type="text" name="quoteLocation" value="" placeholder="Event Location"></br>
+		<h2 class="dynamic-date">Adjust Quote</h2>
+			<input class="dynamic-date" type="text" name="quoteDate" placeholder="Date" value="<?php
+				echo $quote['quoteDate'];
+			?>"></br>
+			<input type="text" name="quoteName" value="<?php
+				echo $quote['quoteName'];
+			?>" placeholder="Name"></br>
+			<input id="email" type="email" name="quoteEmail" value="<?php
+				echo $quote['quoteEmail'];
+			?>" placeholder="Email"></br>
+			<input id="phone" type="phone" name="quotePhone" value="<?php
+				echo $quote['quotePhone'];
+			?>" placeholder="Phone"></br>
+			<input type="text" name="quoteLocation" value="<?php
+				echo $quote['quoteLocation'];
+			?>" placeholder="Event Location"></br>
 			<div class="select-style">
 				<select name="startTime" id="start_time" required >
 					<option selected="selected">Start Time</option>	 

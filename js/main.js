@@ -96,7 +96,11 @@ $(document).ready(function () {
 	    },
 	    action: function () {
 	        return myDateFunction(this.id, false);
-	    }
+	    },
+            ajax: {
+                url: "show_data.php"
+               
+            }
 	});
 
 	function myDateFunction(id) {

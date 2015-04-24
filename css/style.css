@@ -221,7 +221,7 @@ header nav a:hover {
 	width: 100%;
 	margin: 30px 0;
 	border: none;
-	padding: 0;
+	padding: 15px;
 }
 
 #contactForm [name=submit] {
@@ -526,7 +526,7 @@ table tr:nth-child(even) {
 /*  Progress Tracker  */
 
 #featureUX ol {
-	width: 960px;
+	min-width: 800px;
 	margin: 0 auto;
 	padding-left: 180px;
 	text-align: center;

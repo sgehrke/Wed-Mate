@@ -14,6 +14,7 @@
 	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
 	<script src="js/jquery-2.1.0.min.js"></script>
 	<script src="js/zabuto_calendar.js"></script>
+<script src="js/jquery.maskedinput.js"></script>
 	<!-- main -->
 	<script type="text/javascript" src="js/main.js"></script>
 </head>

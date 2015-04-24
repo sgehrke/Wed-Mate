@@ -21,12 +21,19 @@
 	$results = $db->query($optionsSql);
 	$options = $results->fetchAll(PDO::FETCH_ASSOC);
 
-		$eventsSql = 'SELECT * FROM events
+	$eventsSql = 'SELECT * FROM events
 			WHERE eventCreator ='.$_SESSION['id'];
 	$results = $db->query($eventsSql);
 	$events = $results->fetchAll(PDO::FETCH_ASSOC);
 
-		
+	$quoteSql = 'SELECT * FROM quotes
+			WHERE quoteCreator ='.$_SESSION['id'];
+	$results = $db->query($quoteSql);
+	$quotes = $results->fetchAll(PDO::FETCH_ASSOC);
+/*
+	print_r($quotes);
+	die();
+*/
 
 ?>
 <!DOCTYPE HTML>
@@ -158,14 +165,17 @@
 							    <th>View</th>
 							    <th>Delete</th>
 							  </tr>
-							  <tr>
-							    <td>Jill</td>
-							    <td>Today</td>		
-							    <td>Yesterday</td>
-							    <td><a href="#view">View</a></td>
-							    <td>X</td>
-
-							  </tr>
+							  <?php
+									  	foreach ($quotes as $quote) {
+									  	echo 
+									  '<tr>
+									  	<td>'.$quote["quoteName"].'</td>
+									    <td>'.$quote["quoteDate"].'</td>
+									    <td>'.$quote["quoteSubmitted"].'</td>	
+									    <td><a class="update" href="view-quote.php?id='.$quote['id'].'">View</a></td>
+									    <td><a class="delete" href="delete-quote.php?id='.$quote['id'].'">Delete</a></td> 
+									 </tr>'; }
+								  ?>
 					
 							</table>
 						</section>
@@ -246,6 +256,7 @@
 </html>
 
 <script>
+	
 	$( document ).ready(function() {
 		// When clicking delete where the class name is delete the confirm message is shown
 		$('.delete').click(function(){
@@ -256,7 +267,7 @@
 </script>
 
 <script>
-		
+	
 	    $(".update").on('click', function () {  
 		    //jquery stops the form from submitting to PHP processing
 		    //stores the unique variable of the clicked edit button using its href attribute
