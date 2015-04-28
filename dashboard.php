@@ -1,4 +1,5 @@
 <?php
+	error_reporting(E_ALL);
 	require_once('db_con.php');
 	session_start();
 	if (isset($_SESSION['username'])==false){
@@ -25,11 +26,13 @@
 			WHERE eventCreator ='.$_SESSION['id'];
 	$results = $db->query($eventsSql);
 	$events = $results->fetchAll(PDO::FETCH_ASSOC);
-
+	
 	$quoteSql = 'SELECT * FROM quotes
 			WHERE quoteCreator ='.$_SESSION['id'];
 	$results = $db->query($quoteSql);
 	$quotes = $results->fetchAll(PDO::FETCH_ASSOC);
+	
+
 /*
 	print_r($quotes);
 	die();
@@ -75,6 +78,7 @@
 			</h1>
 			<nav>
 				<ul>
+					<li><a href="link-gen.php" class="modal-window" id="link-gen">Link Generator</a></li>
 					<li><a id="logOut" href="logout.php">Log out</a></li>
 				</ul>
 			</nav>
@@ -266,70 +270,5 @@
 	});
 </script>
 
-<script>
-	
-	    $(".update").on('click', function () {  
-		    //jquery stops the form from submitting to PHP processing
-		    //stores the unique variable of the clicked edit button using its href attribute
-		var	url = $(this).attr("href");
-			//console.log(url);
-		$.ajax( {
-			//this is where the ajax sends the url for processing ...PHP page
-			url: url,
-			// Get puts the variable in the URL so it is usable on teh PHP page
-			//It is using the ID from the database in the URL to process unique items
-			type: "GET",
-			//The PHP will return the processed page as a responce and can be used in the success function callback
-			success: function(data) {
-				console.log(data);
-				//Here is where we create the modal window and load in the html from the PHP response.
-				var olay = $('<div class="overlay" />').appendTo(document.body).hide();
-				var modal = $('<div class="modal" />').appendTo(document.body).hide();
-					
-					var openmodal = function(){
-						modal.animate({opacity:1});
-							olay.add(modal).show().css({opacity:0});
-							olay.animate({opacity:.8}, 100);
-					};
-					
-					var closemodal = function(){
-					 	olay.add(modal).animate({opacity:0}, function(){	
-							$(this).hide(); 	
-					 	})
-					};
-					
-					
-					openmodal();
-				$(".modal").html(data);				
-				
-				
-				
-				$('.close').on('click', function() {
-					console.log(this);
-					$('.overlay, .modal').hide();
-					return false;
-				});	
 
-					
-					
-				olay.on('click', closemodal);
-				
-				
-				
-				$(window).on('keyup', function(e){
-				  if (e.which === 27 ){
-					  closemodal();
-				  }
-				}); 
- 
-
-			}
-			
-		});
-
-
-	return false;
-    });
-
-</script>
 

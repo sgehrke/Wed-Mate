@@ -1,5 +1,5 @@
 <?php
-
+	error_reporting(E_ALL);
 	require_once('db_con.php');
 	session_start();
 	if (isset($_SESSION['username'])==false){
@@ -21,13 +21,13 @@
 		
 
 		$packagesSql = 'SELECT * FROM packages
-				WHERE packageCreator ='.$_SESSION['id'];
+				WHERE packageCreator ='.$_SESSION['companyId'];
 		$results = $db->query($packagesSql);
 		$packages = $results->fetchAll(PDO::FETCH_ASSOC);
 		
 	
 		$optionsSql = 'SELECT * FROM options
-				WHERE optionCreator ='.$_SESSION['id'];
+				WHERE optionCreator ='.$_SESSION['companyId'];
 		$results = $db->query($optionsSql);
 		$options = $results->fetchAll(PDO::FETCH_ASSOC);
 	
@@ -42,13 +42,13 @@
 		
 
 		$packagesSql = 'SELECT * FROM packages
-				WHERE packageCreator ='.$_SESSION['id'];
+				WHERE packageCreator ='.$_SESSION['companyId'];
 		$results = $db->query($packagesSql);
 		$packages = $results->fetch(PDO::FETCH_ASSOC);
 		
 	
 		$optionsSql = 'SELECT * FROM options
-				WHERE optionCreator ='.$_SESSION['id'];
+				WHERE optionCreator ='.$_SESSION['companyId'];
 		$results = $db->query($optionsSql);
 		$options = $results->fetch(PDO::FETCH_ASSOC);
 
@@ -121,7 +121,7 @@
 
 ?>	
 <section id="register-modal">	
-	<form class="formLayout" method="POST" action="update-quote.php?id=<?php
+	<form class="formLayout" method="POST" action="modify-quote.php?id=<?php
 		echo $quoteId;
 	?>">	
 		<a class="close">×</a>
@@ -143,7 +143,7 @@
 			?>" placeholder="Event Location"></br>
 			<div class="select-style">
 				<select name="startTime" id="start_time" required >
-					<option selected="selected">Start Time</option>	 
+					<option value="">Start Time</option>	 
 					<option value="11">11:00 AM</option>
 					<option value="11.5">11:30 AM</option>	 
 					<option value="12">12:00 PM</option>
@@ -169,8 +169,8 @@
 					<option value="22">10:00 PM</option>	
 				</select>
 			
-				<select name="endTime" id="end_time" required >
-					<option selected="selected">End Time</option>			 
+				<select name="endTime" id="end_time" required>
+					<option value="">End Time</option>			 
 					<option value="17">5:00 PM</option>
 					<option value="17.5">5:30 PM</option>
 					<option value="18">6:00 PM</option>
@@ -192,9 +192,11 @@
 			
 			
 			<div class="select-style">
-				<select name="quotePackage" id="choose_package" required>
-					<option value="NULL">Choose a Package</option>
+				<select name="quotePackage" id="choose_package" >
 					<?php
+					
+					echo '<option value="'.$quote['quotePackage'].'">'. $quote['quotePackage'] .'</option>';
+					
 						foreach ($packages as $package) {
 							echo '<option>'.$package['packageName'].'</option>';
 						}
@@ -202,9 +204,11 @@
 				</select>
 			
 			
-				<select name="quoteOption" id="choose_option" required>
-					<option value="dynamic packages">Choose an Option</option>
-						<?php
+				<select name="quoteOption" id="choose_option" >
+					<option value="Not Needed">Not Needed</option>
+					<?php
+							echo '<option value="'.$quote['quoteOption'].'">'. $quote['quoteOption'] .'</option>';
+						
 							foreach ($options as $option) {
 								echo '<option>'.$option['optionName'].'</option>';
 							}

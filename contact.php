@@ -16,8 +16,8 @@
 	<div>
 		<nav>
 			<ul>
-				<li><a href="#modal">Log in &nbsp;|</a></li>
-				<li><a href="#modal">&nbsp; Register</a></li>
+				<li><a href="login.php" class="modal-window" id="login">Log in &nbsp;|</a></li>
+				<li><a href="register.php" class="modal-window" id="register">&nbsp; Register</a></li>
 			</ul>
 		</nav>
 	</div>

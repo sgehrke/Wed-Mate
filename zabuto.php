@@ -1,11 +1,12 @@
 <?php
-
+	error_reporting(E_ALL);
 	require_once('db_con.php');
 	session_start();
 	if (isset($_SESSION['message'])) {
 		echo $_SESSION['message'];
 		unset($_SESSION['message']);
 	}
+	
 	
 	// this makes sure that the user submitted the form by checking the request..Alternativley if ($_POST['submit']) but that can send request withut data
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -124,6 +125,7 @@
 		var dateString	= month + " " + day + ", " + datesplit[0];
 			console.log(dateString);
 		$("#bodate").val(dateString);
+		$("#dynamic-date").val(dateString);
 
 	
 	});

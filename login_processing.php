@@ -1,4 +1,5 @@
 <?php
+	error_reporting(E_ALL);
     //PHP to login the admin
 	require_once('db_con.php');
 	session_start();
@@ -11,7 +12,6 @@
        
 
 		if (empty($_POST['username']) || empty($_POST['password']) ) {
-            	$_SESSION['message'] =  "<p id='error_login'>Please enter a user name and password.</p>";
             	echo "Invalid Credentials";
             	
 		}else{
@@ -49,7 +49,7 @@
 		        //$_SESSION['login_pass'] = $password;
 				
 		    }else {
-		       	$_SESSION['message'] = "<p id='error'>Your credentials are invalid</p>";
+            	echo "Invalid Credentials";
 		    }//end of the if/else check password
 		    
         }//end of the if/else empty

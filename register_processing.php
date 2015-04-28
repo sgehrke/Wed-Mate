@@ -1,5 +1,5 @@
 <?php
-
+	error_reporting(E_ALL);
 	require_once('db_con.php');
 	session_start();
 	if (isset($_SESSION['message'])) {
@@ -7,11 +7,17 @@
 		unset($_SESSION['message']);
 	}
 	
+
+	
+	
 	// this makes sure that the user submitted the form by checking the request..Alternativley if ($_POST['submit']) but that can send request withut data
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		
+		$response = array();
+
 		//form was submittted
 		if (empty($_POST['username']) || empty($_POST['password']) ) {
-            	$_SESSION['message'] =  "<p id='error_login'>Please enter a user name and password.</p>";
+            	$response['error'] = "Please complete the entire form";
 		}else{
 		//Once the condition is met for begin storing the info in variables
 		$logourl = $_POST['logourl'];
@@ -42,6 +48,7 @@
 			$numRows = $stmt->rowCount();
 			//echo $numRows;
 			if ($numRows > 0) {
+				
 				$dupmessage = '<p class="dupmessage">That company is already registered</p>';
 				header("Location: index.php");
 				echo $dupmessage; //cannot dislay this before header...this needs to be displayed on the AJAX modal
@@ -78,15 +85,14 @@
 					echo $e->getMessage();
 					die();
 				}	    
-					
+				$response['username'] = $username;	
 		        $_SESSION['username'] = $username;
 		        $_SESSION['id'] = $userID;
-				header("Location: dashboard.php");
-				// MAKE ALL SESSION VARIABLE HERE
+				
 			}
-
 		}
-	}	
+	}
+	echo json_encode($response);	
 }
 
 ?>

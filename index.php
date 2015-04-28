@@ -1,4 +1,37 @@
+<?php
+	error_reporting(E_ALL);
+	require_once('db_con.php');
+	session_start();
 
+	if (isset($_SESSION['message'])) {
+		echo $_SESSION['message'];
+		//echo $_SESSION['username'];
+		unset($_SESSION['message']);
+	}
+	//print_r($_SESSION);
+/*
+	$packagesSql = 'SELECT * FROM packages
+			WHERE packageCreator ='.$_SESSION['id'];
+	$results = $db->query($packagesSql);
+	$packages = $results->fetchAll(PDO::FETCH_ASSOC);
+	
+	$optionsSql = 'SELECT * FROM options
+			WHERE optionCreator ='.$_SESSION['id'];
+	$results = $db->query($optionsSql);
+	$options = $results->fetchAll(PDO::FETCH_ASSOC);
+
+	$eventsSql = 'SELECT * FROM events
+			WHERE eventCreator ='.$_SESSION['id'];
+	$results = $db->query($eventsSql);
+	$events = $results->fetchAll(PDO::FETCH_ASSOC);
+
+	$quoteSql = 'SELECT * FROM quotes
+			WHERE quoteCreator ='.$_SESSION['id'];
+	$results = $db->query($quoteSql);
+	$quotes = $results->fetchAll(PDO::FETCH_ASSOC);
+*/
+
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -67,7 +100,9 @@
 				
 				<p>Our system makes gathering potential client information as easy as 1-2-3. All they need to do is check their date, supply their pertinent information, and check the generated price quote. You have complete control of the prices and will be alerted only when someone checks a date that you are available on.</p>
 <!-- These h3's may need to be put into a div container to seperate content -->
-				<a href="calendar.php"><img src="images/calendar.jpg" alt="calendar" width="150" height="150"></a>
+				<a href="calendar.php?id=<?php
+					echo $_SESSION['id'];
+				?>"><img src="images/calendar.jpg" alt="calendar" width="150" height="150"></a>
 				<h3>Availability Checker</h3>
 				
 				<p>The event calendar will allow you to blackout unavailable dates with a click of a button. You will also be able to see event details simply by hovering over a blacked out date. </p>

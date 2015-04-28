@@ -1,3 +1,26 @@
+<?php
+	error_reporting(E_ALL);
+	require_once('db_con.php');
+	session_start();
+
+	if (isset($_SESSION['message'])) {
+		echo $_SESSION['message'];
+		//echo $_SESSION['username'];
+		unset($_SESSION['message']);
+	};
+	
+
+
+	$userSql = 'SELECT * FROM users
+			WHERE id ='.$_SESSION['companyId'];
+	$results = $db->query($userSql);
+	$user = $results->fetch(PDO::FETCH_ASSOC);
+
+/*
+	print_r($user);
+	die();
+*/
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -26,8 +49,17 @@
 	</div>
 <!-- This secion is for the featured image slider and exerpt along its bottom -->
 	<section id="featureUX">
-		<div id="userLogo" class="container">
-		</div>
+		<?php
+			if (strlen($user['logourl']) > 1) {
+			// session logourl show logo image
+			echo '<a href="'.$user["website"].'" target="_blank"><div id="userLogo" class="container"><img src="'.$user['logourl'].'" alt="'.$user['companyname'].'" height="245">
+			</div></a>';
+			} else {
+				echo '<div id="userLogo" class="container"><h1>'.$user['companyname'].'</h1>
+			</div>';
+			};
+			
+		?>
 		<div id="featOverlayUX">
 				
 		</div>
@@ -36,7 +68,9 @@
 	<section id="booked" class="container">
 		<h3>We regret to inform you that the date you are inquiring <br/> about has already been booked <br/>Feel Free to check our availablity on other dates</h3>
 		<h4><strong>There still might be a chance!</strong> Sometimes dates fall through and become available again. Please <a href="contact.php">contact us</a> if you are interested in joining out waiting list.</h4>
-		<a href="calendar.php">Check New Date</a>
+		<a href="calendar.php?id=<?php
+					echo $user['id'];
+				?>">Check New Date</a>
 			
 	</section>
 

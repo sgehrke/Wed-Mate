@@ -1,4 +1,5 @@
 <?php
+	error_reporting(E_ALL);
 	//setup MySQL database
 	$mysql = 'mysql:host=localhost; dbname=wedmate_db';//DSN
 	//$db = new PDO($mysql, 'root', 'root');

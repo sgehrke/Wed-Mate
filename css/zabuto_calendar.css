@@ -19,6 +19,12 @@ div.zabuto_calendar .table td {
     text-align: center;
 }
 
+div.zabuto_calendar .table tr td.selected-date {
+	background: black;
+	color: white;
+}
+
+
 div.zabuto_calendar .table tr th,
 div.zabuto_calendar .table tr td {
     background-color: #ffffff;
@@ -69,7 +75,7 @@ div.zabuto_calendar div.calendar-month-navigation {
     margin: 0;
     padding: 0;
     padding-top: 5px;
-    color: black;
+    color: white;
 }
 
 div.zabuto_calendar tr.calendar-dow-header th,
@@ -80,7 +86,7 @@ div.zabuto_calendar tr.calendar-dow td {
 
 div.zabuto_calendar .table tr td div.day {
     margin: 0;
-    padding: 10px; 
+    padding: 7.5px; 
 }
 
 /* actions and events */
@@ -171,6 +177,8 @@ div.zabuto_calendar div.legend span.badge {
     padding-top: 2px;
     padding-bottom: 3px;
 }
+
+
 
 /* responsive */
 @media (max-width: 979px) {

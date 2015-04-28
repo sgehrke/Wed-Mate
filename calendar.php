@@ -1,6 +1,29 @@
+<?php
+	error_reporting(E_ALL);
+	require_once('db_con.php');
+	session_start();
+	
+	if (isset($_SESSION['message'])) {
+		echo $_SESSION['message'];
+		//echo $_SESSION['username'];
+		unset($_SESSION['message']);
+	};
+	
+	$_SESSION['companyId'] = $_GET['id'];
+
+	if (!isset($_SESSION['companyId'])) {
+		header("Location: index.php");
+		die();	
+	};
+
+	$userSql = 'SELECT * FROM users
+			WHERE id ='.$_SESSION['companyId'];
+	$results = $db->query($userSql);
+	$user = $results->fetch(PDO::FETCH_ASSOC);
+
+?>
 <!DOCTYPE HTML>
 <html>
-
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Event Assistant | Wed-Mate</title>
@@ -27,8 +50,17 @@
 	</div>
 <!-- This secion is for the featured image slider and exerpt along its bottom -->
 	<section id="featureUX">
-		<a href="#home.php" target="_blank"><div id="userLogo" class="container">
-		</div></a>
+		<?php
+			if (strlen($user['logourl']) > 1) {
+			// session logourl show logo image
+			echo '<a href="'.$user["website"].'" target="_blank"><div id="userLogo" class="container"><img src="'.$user['logourl'].'" alt="'.$user['companyname'].'" height="245">
+			</div></a>';
+			} else {
+				echo '<div id="userLogo" class="container"><h1>'.$user['companyname'].'</h1>
+			</div>';
+			};
+			
+		?>
 		<div id="featOverlayUX">
 				<ol class="progtrckr" data-progtrckr-steps="3">
 				    <li class="progtrckr-done"><span>Check Availability</span></li><!--
@@ -46,8 +78,8 @@
 		<section>
 			<div id="my-calendar">	
 			</div>
-			
-				<a href="booked.php" class="modal-window" id="event-info">Check Selected Date</a>
+
+					<a class="checkDate" id ="check-date">Check Selected Date</a>
 			
 		</section>
 		
@@ -72,3 +104,4 @@
 </body>
 
 </html>
+

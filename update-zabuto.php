@@ -1,5 +1,5 @@
 <?php
-
+	error_reporting(E_ALL);
 	require_once('db_con.php');
 	session_start();
 	if (isset($_SESSION['username'])==false){

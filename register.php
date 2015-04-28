@@ -1,5 +1,5 @@
 <?php
-
+	error_reporting(E_ALL);
 	require_once('db_con.php');
 	session_start();
 	if (isset($_SESSION['message'])) {
@@ -11,7 +11,7 @@
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//form was submittted
 		if (empty($_POST['username']) || empty($_POST['password']) ) {
-            	$_SESSION['message'] =  "<p id='error_login'>Please enter a user name and password.</p>";
+            	echo "Please enter a user name and password";
 		}else{
 		//Once the condition is met for begin storing the info in variables
 		$logourl = $_POST['logourl'];
@@ -81,7 +81,7 @@
 					
 		        $_SESSION['username'] = $username;
 		        $_SESSION['id'] = $userID;
-				header("Location: dashboard.php");
+				//header("Location: dashboard.php");
 
 				// MAKE ALL SESSION VARIABLE HERE
 			}
@@ -93,9 +93,11 @@
 ?>
 <section id="register-modal">	
 <!-- 	<div id="ack">ERROR DISPLAY</div> -->
-	<form id="registerForm" class="formLayout ajax" method="POST" action="register.php" onsubmit="return FrontPage_Form1_Validator(this)" name="FrontPage_Form1" language="JavaScript">	
+	<form id="registerForm" class="formLayout ajax" method="POST" action="register_processing.php">	
 		<a class="close">×</a>
 		<h2>Sign up</h2>
+	<div id="ack">&nbsp;</div>
+
 			<input type="url" name="logourl" value="" placeholder="Logo URL" class="tooltip arrow_boxTool"><span class="tipbox">This is the URL to your logo file, for example: http://www.yourdjcompany.com/images/logo.gif</br><em>This file must be located on a web server, not on your hard drive.</em></span>
 			<input type="text" name="companyname" value="" placeholder="Company Name" ></br>
 			<input type="url" name="website" value="" placeholder="Website - http://"  >
@@ -106,27 +108,9 @@
 	</form>
 
 </section>
-<script language="JavaScript" type="text/javascript">
-
-	function FrontPage_Form1_Validator(theForm)
-	{
-	
-	  if (theForm.email.value == "")
-	  {
-	    theForm.Email.setAttribute("class", "error");
-	    document.getElementById('email').style.borderColor = "#ff6f47";
-	    document.getElementsByName('Email')[0].placeholder='Email is Required';
-	    return (false);
-	  }
-	  return (true);
-	}
-
-		
-
-</script>
 
 <script>
-	    $("form.ajax").on('submit', function () {
+	$("form.ajax").on('submit', function () {
 		
 		var that = $(this),
 			url = that.attr('action'),
@@ -141,29 +125,37 @@
 			data[name] = value;
 		});
         
-        console.log(data);
 
+	        $.ajax({
+	
+	            url: url,
+	            type: "POST",
+	            datatype: "json",
+	            data: data,
+	
+	            success: function (data) {
+					var data = $.parseJSON(data);
+						console.log(data);
+						console.log(data.username);
+					if (data.error){
+						$('#ack').html(data.error);   
+					} else {
+					
+						$(".modal").load('login.php', function(){
+					
+							$('#username').val(data.username);
+							$('#password').focus();
+						});
+					}
 
-        $.ajax({
+	            }
 
-            url: url,
-            type: "post",
-           //  datatype: "json",
-            data: data,
-
-            success: function (response) {
-                if (response.error) {
-	                console.log("error");
-                    alert(response.error);
-                } else {
-	                console.log("no error");
-                    window.location.assign("dashboard.php");
-                }
-            }
-        });
+	
+	            
+	        });
 
 	return false;
-    });
+	});
 	
 	
 </script>

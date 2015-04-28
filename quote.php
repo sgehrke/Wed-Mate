@@ -1,5 +1,5 @@
 <?php
-
+	error_reporting(E_ALL);
 	require_once('db_con.php');
 	session_start();
 	if (isset($_SESSION['message'])) {
@@ -7,20 +7,22 @@
 		unset($_SESSION['message']);
 	}
 	
-// 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
 	
+	$userSql = 'SELECT * FROM users
+	WHERE id ='.$_SESSION['companyId'];
+	$results = $db->query($userSql);
+	$user = $results->fetch(PDO::FETCH_ASSOC);
+
 		$quotes = "SELECT * FROM quotes
 				WHERE id = ".$_SESSION['lastId'] ;			
 		$results = $db->query($quotes);
 		$quote = $results->fetch(PDO::FETCH_ASSOC);
-/*
-		print_r($quote);
-		die();
-*/
 
-// 	}	
+
+
+
 ?>
-
 <!DOCTYPE HTML>
 <html>
 
@@ -49,8 +51,17 @@
 	</div>
 <!-- This secion is for the featured image slider and exerpt along its bottom -->
 	<section id="featureUX">
-		<a href="#home.html" target="_blank"><div id="userLogo" class="container">
-		</div></a>
+		<?php
+			if (strlen($user['logourl']) > 1) {
+			// session logourl show logo image
+			echo '<a href="'.$user["website"].'" target="_blank"><div id="userLogo" class="container"><img src="'.$user['logourl'].'" alt="'.$user['companyname'].'" height="245">
+			</div></a>';
+			} else {
+				echo '<div id="userLogo" class="container"><h1>'.$user['companyname'].'</h1>
+			</div>';
+			};
+			
+		?>
 		<div id="featOverlayUX">
 				<ol class="progtrckr" data-progtrckr-steps="3">
 				    <li class="progtrckr-done"><span>Check Availability</span></li><!--
@@ -62,7 +73,9 @@
 	<section id="quote">
 		<h2>Here is your Instant Quote</h2>
 		<section>
-		<p><strong>Please review your choices.</strong> You may adjust your quote to tailor the package to your needs. If you are satisfied with the quote please <a href="#companyURLfor Booking">contact us</a> and we will begin the booking process.</p>
+		<p><strong>Please review your choices.</strong> You may adjust your quote to tailor the package to your needs. If you are satisfied with the quote please <a href="mailto:<?php
+			echo $user['email'];
+		?>">contact us</a> and we will begin the booking process.</p>
 			<table>
 				<tr>
 		            <th scope="row">Package</th>
@@ -72,19 +85,27 @@
 		        </tr>
 		        <tr>
 		            <th scope="row">Options</th>
-		            <td><?php
-						echo $quote['quoteOption'];
-					?></td>
+		            <td>
+			            <?php
+							if ($quote['quoteOption']){
+								echo $quote['quoteOption'];
+							} else {
+								echo 'None Selected';
+							}
+						?>
+					</td>
 		        </tr>
 		        <tr>
 		            <th scope="row">Overtime Hours</th>
-		            <td><?php 
-			           if ($quote['overTime']){
+		            <td>
+			            <?php 
+							if ($quote['overTime']){
 				         
-							echo $quote['overTime'];
+								echo $quote['overTime'];
 						
 						} else { echo "Not Needed";}
-					?></td>
+						?>
+					</td>
 		        </tr>
 		        <tr>
 		            <th scope="row">Total</th><div class="arrow-right"></div>
@@ -95,12 +116,16 @@
 		        </tr>		
 			</table>
 
-			<p><strong>This is only an estimate.</strong> In no way does this event quote bind either party into a contract. If you would like to move forward with the booking process please <a href="#companyURLforBooking">contact us</a> as soon as possible.</p>
+			<p><strong>This is only an estimate.</strong> In no way does this event quote bind either party into a contract. If you would like to move forward with the booking process please <a href="mailto:<?php
+			echo $user['email'];
+		?>">contact us</a> as soon as possible.</p>
 			<div>
 				<td><?php
 					echo '<a class="update" href="update-quote.php?id='.$quote['id'].'">Adjust Quote</a>';
 				?>
-				<a href="this will send to there website or email">Book Date</a>
+				<a href="<?php echo $user['website']
+				?>">Book Date</a>
+				
 			</div>
 		</section>
 	</section>
@@ -110,7 +135,7 @@
 
 	<footer>
 		<div class="container">
-			<p>Powered by &nbsp; &copy;<a href="index.html">Wed-Mate.com 2015</a> </p>
+			<p>Powered by &nbsp; &copy;<a href="index.php">Wed-Mate.com 2015</a> </p>
 			<p id="social">
 				<a href="twitter.com"><i class="fa fa-twitter"></i></a>
 				<a href="facebook.com"><i class="fa fa-facebook"></i></a>
