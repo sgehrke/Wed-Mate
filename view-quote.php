@@ -215,82 +215,9 @@
 			<input type="submit" name="submit" value="Instant Quote"></br>
 	</form>
 </section>
-<script language="JavaScript" type="text/javascript">
 
-	function FrontPage_Form1_Validator(theForm)
-	{
-	
-	  if (theForm.Email.value == "")
-	  {
-	    theForm.Email.setAttribute("class", "error");
-	    document.getElementById('email').style.borderColor = "#ff6f47";
-	    document.getElementsByName('Email')[0].placeholder='Email is Required';
-	    return (false);
-	  }
-	  return (true);
-	}
-
-
-</script>
 	<script>
 		jQuery(function($){
 			$("#phone").mask("(999) 999-9999");
 		});
 	</script>
-<script>
-	
-	$( document ).ready(function() {
-	
-		$('.close').on('click', function() {
-			$('.overlay, .modal').hide();
-			return false;
-		});
-		var day = datesplit[2];
-		var month = datesplit[1];
-		switch (month) {
-		    case "01":
-		        month = "January";
-		        break;
-		    case "02":
-		        month = "February";
-		        break;
-		    case "03":
-		        month = "March";
-		        break;
-		    case "04":
-		        month = "April";
-		        break;
-		    case "05":
-		        month = "May";
-		        break;
-		    case "06":
-		        month = "June";
-		        break;
-			case "07":
-		        month = "July";
-		        break;
-		    case "08":
-		        month = "August";
-		        break;
-		    case "09":
-		        month = "September";
-		        break;
-		    case "10":
-		        month = "October";
-		        break;
-		    case "11":
-		        month = "November";
-		        break;
-		    case "12":
-		        month = "December";
-		        break;    
-		}
-		
-		var dateString	= month + " " + day + ", " + datesplit[0];
-			console.log(dateString);
-		$("h2.dynamic-date").append(dateString); 
-		$("input.dynamic-date").val(dateString);
-
-	
-	});
-</script>

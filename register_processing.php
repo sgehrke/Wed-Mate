@@ -16,7 +16,7 @@
 		$response = array();
 
 		//form was submittted
-		if (empty($_POST['username']) || empty($_POST['password']) ) {
+		if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email']) || empty($_POST['companyname']) || empty($_POST['logourl']) || empty($_POST['website'])){
             	$response['error'] = "Please complete the entire form";
 		}else{
 		//Once the condition is met for begin storing the info in variables

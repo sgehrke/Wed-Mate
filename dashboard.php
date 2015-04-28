@@ -11,6 +11,8 @@
 		//echo $_SESSION['username'];
 		unset($_SESSION['message']);
 	}
+	
+	$company = $_SESSION['id'];
 	//print_r($_SESSION);
 	$packagesSql = 'SELECT * FROM packages
 			WHERE packageCreator ='.$_SESSION['id'];
@@ -26,12 +28,38 @@
 			WHERE eventCreator ='.$_SESSION['id'];
 	$results = $db->query($eventsSql);
 	$events = $results->fetchAll(PDO::FETCH_ASSOC);
-	
+	$numRows = $results->rowCount();
+
 	$quoteSql = 'SELECT * FROM quotes
 			WHERE quoteCreator ='.$_SESSION['id'];
 	$results = $db->query($quoteSql);
 	$quotes = $results->fetchAll(PDO::FETCH_ASSOC);
 	
+	$mostviewedSql = 'select quoteDate, count(*) as viewed FROM quotes
+						WHERE quoteCreator = :company
+						group by quoteDate
+						ORDER BY viewed desc
+						limit '. $numRows;
+					
+								
+	$viewed = $db->prepare($mostviewedSql);
+	$viewed->bindParam(':company', $company);
+// 	$viewed->bindParam(':numrows', $numRows);
+	$viewed->execute();
+	$mostViewed = $viewed->fetchAll(PDO::FETCH_ASSOC);
+/*
+	print_r($mostViewed);
+	die();
+*/
+	
+/*
+			$packagesSql = 'SELECT * FROM packages
+		WHERE packageName = :quotePackage';
+		$results = $db->prepare($packagesSql);
+		$results->bindParam(':quotePackage', $quotePackage);
+		$results->execute();
+		$packages = $results->fetch(PDO::FETCH_ASSOC);
+*/
 
 /*
 	print_r($quotes);
@@ -51,6 +79,7 @@
 	<script src="js/jquery-2.1.0.min.js"></script>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 	<script src="js/zabuto_calendar.js"></script>
+	<script src="js/jquery.maskedinput.js"></script>
 	<!-- main -->
 	<script type="text/javascript" src="js/main.js"></script>	
 </head>
@@ -218,11 +247,12 @@
 										</table>
 									
 										<table id="mostViewedTable">
-										 <tr>
-										    <th>Most Viewed Dates</th>							   
-										  </tr>
-										  <tr><td>FILLER</td></tr>
-										  <!-- <tr><td>FILLER</td></tr> -->
+										 	<th>Most Viewed Dates</th>
+										 <?php
+										 	foreach ($mostViewed as $viewed){;
+										 	echo '<tr><td>'.$viewed['quoteDate'].'</td></tr>';
+										 	}
+										 ?>
 										  
 										</table>
 									</section>
